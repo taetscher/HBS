@@ -24,7 +24,7 @@ async function wrapper(){
     */
     
     //populate the team selection dropdown
-    var treeAtMaster = "https://api.github.com/repos/taetscher/handballStats/git/trees/master"
+    var treeAtMaster = "https://api.github.com/repos/taetscher/HBS/git/trees/master"
     var basetree = await getTree(treeAtMaster)
     var output_csv = await getTree(basetree.output_csv)
     var teams = await getTree(output_csv.progress_data)

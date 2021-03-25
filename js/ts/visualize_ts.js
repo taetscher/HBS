@@ -13,7 +13,7 @@ export function visualizeTS(){
     //build in an option to visualize everything on top of each other (see all games)
     
     //construct an url to the base data
-    var ts_baseurl = "https://raw.githubusercontent.com/taetscher/handballStats/master/output_csv/gameProgressions/";
+    var ts_baseurl = "https://raw.githubusercontent.com/taetscher/HBS/master/output_csv/gameProgressions/";
     var team = document.getElementById('dropdown_teams').innerHTML;
     var season = document.getElementById('dropdown_seasons').innerHTML;
     var stat = document.getElementById('dropdown_stats').innerHTML;
@@ -197,7 +197,7 @@ export async function visualizeTS_allGames(in_array){
     for (c=0; c<len; c++){
         
         //custom tailor an url to the data
-        var ts_baseurl = "https://raw.githubusercontent.com/taetscher/handballStats/master/output_csv/gameProgressions/";
+        var ts_baseurl = "https://raw.githubusercontent.com/taetscher/HBS/master/output_csv/gameProgressions/";
         var team = document.getElementById('dropdown_teams').innerHTML;
         var season = document.getElementById('dropdown_seasons').innerHTML;
         var stat = in_array[c];
@@ -267,7 +267,7 @@ export async function visualizeTS_allGames(in_array){
     //LOOP OVER ALL CSVS AND ADD THEM TO CANVAS
     for (q=0; q<len; q++){        
         //construct an url to the base data
-        var ts_baseurl = "https://raw.githubusercontent.com/taetscher/handballStats/master/output_csv/gameProgressions/";
+        var ts_baseurl = "https://raw.githubusercontent.com/taetscher/HBS/master/output_csv/gameProgressions/";
         var team = document.getElementById('dropdown_teams').innerHTML;
         var season = document.getElementById('dropdown_seasons').innerHTML;
         var stat = in_array[q];
