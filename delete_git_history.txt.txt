@@ -1,0 +1,16 @@
+in order to delete git history, first delete all remote tags with:
+
+$ git tag -l | xargs -n 1 git push --delete origin
+
+then also delete all local tags with:
+
+$ git tag | xargs git tag -d
+
+then delete the .git folder and initialize a new repo, set the origin with https://github.com/taetscher/{repo_name}.git:
+
+$ rm -rf .git
+$ git init
+$ git add .
+$ git commit -m "Removed history, due to sensitive data"
+$ git remote add origin https://github.com/taetscher/{repo_name}.git
+$ git push -u --force origin master
