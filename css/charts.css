@@ -1,0 +1,61 @@
+.x_ticks_ips{
+    font-size: 14px;
+}
+
+.grid{
+    color: papayawhip;
+    stroke-width: 1px;
+    opacity: 1;
+}
+
+.grid_ips{
+    color: papayawhip;
+    stroke-width: 2px;
+    opacity: 1;
+}
+
+.halftime{
+    opacity: 1;
+    stroke: #ffc059;
+    stroke-width: 5px;
+}
+
+.draw {
+    opacity: 0;
+    stroke: #ffc059;
+    stroke-width: 5px;
+}
+
+.area {
+    color: #0a3634;
+    stroke-opacity: 0.8;
+    stroke-width: 2px;
+}
+
+.axes {
+    font: 14px Georgia;
+    font-size: 18px;
+    color: #ffc059;
+    stroke-width: 3px;
+}
+
+.axes-label {
+    fill: #ffc059;
+    font-size: 20px;
+}
+
+.chart-title {
+    fill: #ffc059;
+    font-size: 20px;
+}
+
+#viz {
+    min-height: 60vh;
+    margin-bottom: 5vh;
+    padding: 5px;
+    background-color: #166e6b;
+}
+
+#checkboxes{
+    overflow: auto;
+}

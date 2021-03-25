@@ -1,0 +1,69 @@
+/* Handling the Appearance of links */
+/* unvisited link */
+button:link {
+    color: #ffc059;
+}
+
+/* visited link */
+button:visited {
+    color: #ffc059;
+}
+
+/* mouse over link */
+button:hover {
+    color: #ff1c73;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+ul {
+    padding: 0px;
+    list-style-type: none;
+}
+
+.dropdown .show {
+    background-color: rgba(10, 54, 52, 0.9);
+    border-color: #ffc059;
+    max-height: 50vh;
+    overflow: auto;
+}
+
+button{
+    display: block;
+    width: 100%;
+    text-align: left;
+    color: #ffc059;
+    outline: none;
+    background: none;
+    overflow: auto;
+    margin-bottom: 5px;
+    border-width: 1px 0px 1px 0px; /* top right bottom left */
+    border-style: solid dotted solid double;
+    border-color: #ffc059 #0f0 #ffc059 #ff0;
+}
+
+.dropdown_button{
+    width: 100%;
+    text-align: center;
+    color: #ffc059;
+    outline: none;
+    background: none;
+    overflow: auto;
+    margin: 0px;
+    border-width: 0px 0px 1px 0px; /* top right bottom left */
+    border-style: solid dotted solid double;
+    border-color: #f00 #0f0 #ffc059 #ff0;
+}
+
+#dropdown_teams, #dropdown_seasons, #dropdown_stats {
+    background-color: #0a3634;
+    color: papayawhip;
+    border-color: #ffc059;
+}
+
+#dropdown_button {
+    margin: 5px;
+}
+
+#dropdown_menu_select{
+}

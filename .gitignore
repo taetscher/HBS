@@ -1,0 +1,26 @@
+#files to untrack
+geckodriver.log
+ghostdriver.log
+#.csv
+.idea/
+.idea/workspace.xml
+debug.log
+geckodriver.log 
+vendor
+.bundle
+Gemfile
+Gemfile.lock
+
+.idea/
+
+lib/__pycache__
+.pyc
+
+.venv
+.venv/
+
+testfile.py
+.credentials
+gmail.credentials
+
+__pycache__/

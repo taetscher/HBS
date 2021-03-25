@@ -1,0 +1,40 @@
+<div class='container col-10'>
+
+    <h1 id='welcome' style='text-align: center'> WELCOME TO THE HANDBALLSTATS HOMEPAGE!</h1>
+    
+    <hr>
+    <p>This website visualizes the results of a <a href='https://github.com/taetscher/handballStats' target="_blank">project of mine</a>, where I automatically download (scrape) and analyze data from the <a href='https://www.handball.ch/de/matchcenter/' target="_blank">handball.ch</a> matchcenter. I use Python (<a href='https://www.selenium.dev/documentation/en/webdriver/' target="_blank">Selenium Webdriver</a>, <a href='https://pandas.pydata.org/pandas-docs/stable/index.html' target="_blank">Pandas</a>, <a href='https://matplotlib.org/index.html' target="_blank">Matplotlib</a>) to collect the data and visualize it statically, as well as JavaScript (<a href='https://d3js.org/' target="_blank">D3.js</a>) to create the interactive visualizations on this website.</p>
+    
+    <p>In the highest leagues of Swiss Handball, games (and player stats) are recorded using a feature called 'Liveticker'. Since I coach a team in such a league, I figured I would use this data, visualize it interactively and maybe gain some more insights into the performance of my team. Sadly, I could not find an API to get the data directly, so I had to resort to scraping it. Along the way I implemented a mechanism for data collection that lets me analyze additional teams with minimal effort, so therefore I ended up analyzing more than just my team's performance.</p>
+    
+    <hr>
+    <div class='container col-9' id='index_intro_explanation'>
+        <h2 style='text-align: center'>Here's a brief overview of the site and what to expect where:</h2>
+        
+        <div class='container col-11'>
+            <h4 style='text-align: center'><a href='./pages/ips.html'>Individual Player Statistics</a></h4>
+                <p>Here you can find statistics of individual players. You can display all players on top of each other or select only some players to compare against each other.</p>
+                <p></p>
+            
+            
+            <h4 style='text-align: center'><a href='./pages/ts.html'>Game Progressions || Team Statistics</a></h4>
+                <p>Here you will find neat visualizations of a game's progression. Be sure to read the section about how these graphs are generated in the <a>About Section</a> to fully understand and be able to interpret them correctly.</p>
+                <p></p>
+            
+            
+            <h4 style='text-align: center'><a href="./pages/about.html">About</a></h4>
+                <p>Here you can find some extra information about the pages, some background about the motivation for this project and a general overview about how this project is implemented.</p>
+                <p></p>
+            
+            <hr>
+            <p>For additional information, please see the <a href='./pages/about.html' target="_blank">About Section</a> of this page or shoot me an <a href="mailto:schuepbachjamin@gmail.com">email</a>.</p>
+        </div>
+        
+        
+    </div>
+    
+    
+
+</div>
+
+

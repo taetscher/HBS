@@ -1,0 +1,109 @@
+@import url('./navbar.css');
+@import url('./scrollbar.css');
+@import url('./dropdown.css');
+@import url('charts.css');
+@import url('checkboxes.css');
+@import url('tables.css');
+@import url('intro.css');
+@import url('about_page.css');
+
+body {
+    font: 16px Georgia;
+    font-size: 16px;
+    background-color: #166e6b;
+}
+
+html {
+    /* Wacker Thun Brand Color: #166e6b */
+    background-color: #166e6b;
+}
+
+hr {
+    display: block;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-color: #ffc059;
+}
+
+#content {
+    background-color: #166e6b;
+    color: papayawhip;
+}
+
+#footer { 
+   bottom : 10%;  
+   height : 1vh;  
+   text-align: center;  
+   vertical-align: middle; 
+   margin: auto;
+   width:100%;
+   background-color: #166e6b;
+}
+
+#author {
+    color: papayawhip;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    padding: 5vh;
+}
+
+h1 {
+    margin: 1vw;
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 22px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+h5 {
+    font-size: 17px;
+}
+
+/* On screens that are 992px or less */
+@media screen and (max-width: 1200px) {
+
+}
+
+/* On screens that are 600px or less */
+@media screen and (max-width: 1000px) {
+
+}
+
+
+/* Handling the Appearance of links */
+/* unvisited link */
+a:link {
+    color: #ffc059;
+}
+
+/* visited link */
+a:visited {
+    color: #ffc059;
+}
+
+/* mouse over link */
+a:hover {
+    color: #ff1c73;
+    text-decoration: none;
+}
+
+#index_intro_explanation{
+    text-align: center;
+}

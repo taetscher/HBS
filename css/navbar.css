@@ -1,0 +1,231 @@
+#navbar {
+    background-color: #0a3634;
+    color: papayawhip;
+    font-size: 20px;
+    height: 60px;
+    font: 16px Georgia;
+    border-width: 10px;
+    border-color: #ffc059; 
+}
+
+.nav-item {
+    z-index: 300000;
+    background-color: #0a3634;
+}
+
+#collapsibleNavbar {
+    z-index: 300000;
+    background-color: #0a3634;
+}
+
+#collapsibleNavbar:click{
+    outline: none;
+    box-shadow: none;
+    z-index: 300000;
+    background-color: #0a3634;
+
+}
+
+#menu {
+    color: papayawhip;
+    font-size: 16px;
+}
+
+#home {
+    color: #ffc059;
+    font-size: 24px;
+}
+
+#home:hover {
+    color: #ff1c73;
+    font-size: 26px;
+}
+
+#navigation {
+    color:papayawhip;
+    font-size: 15px;
+    font-style: italic;
+}
+
+.navbar-nav {
+    color: papayawhip;
+}
+
+.nav-link {
+    font-size: 16px;
+    margin: 0.5vw;
+    background-color: #072625;
+    border-radius: 1vw;
+    text-align: center;
+}
+
+.nav-link:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.nav-link:hover {
+    font-size: 16px;
+    margin: 0.5vw;
+    background-color: #0f5452;
+    border-radius: 1vw;
+    text-align: center;
+    transition-delay: 1ms, 0ms;
+    transition-property: font-size, color;
+}
+
+
+
+
+
+
+
+
+/* On screens that are 992px or less */
+@media screen and (max-width: 1050px) {
+    #navbar {
+    background-color: #0a3634;
+    color: papayawhip;
+    font-size: 16px;
+    height: 80px;
+    }
+    
+    #home {
+        color: #ffc059;
+        font-size: 16px;
+    }
+
+    #menu {
+        color: papayawhip;
+        font-size: 16px;
+        height: 30px;
+        width: 30px;
+    }
+    
+    #menu_wrapper{
+        width: 36px;
+        height: 36px;
+        padding: 2px;
+    }
+    
+    #navigation {
+    color:papayawhip;
+    font-size: 16px;
+    font-style: italic;
+    }
+
+    .navbar-nav {
+        color: papayawhip;
+        background-color: rgba(7, 38, 37, 0.5);;
+    }
+
+    .nav-link {
+        font-size: 16px;
+        margin: 0.5vw;
+        background-color: #072625;
+        border-radius: 1vw;
+        text-align: center;
+    }
+    
+    .nav-link:hover {
+        font-size: 16px;
+        margin: 0.5vw;
+        background-color: #0f5452;
+        border-radius: 1vw;
+        text-align: center;
+    }
+
+
+    .custom-toggler .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 239, 213, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    }
+
+    .custom-toggler.navbar-toggler {
+        border-color: papayawhip;
+    } 
+
+    .custom-toggler.navbar-toggler:hover {
+        border-color: #ff1c73;
+    }
+
+    .custom-toggler.navbar-toggler:visited {
+        border-color: #ff1c73;
+    }
+}
+
+
+
+
+
+
+/* On screens that are 600px or less*/
+@media screen and (max-width: 600px) {
+    #navbar {
+    background-color: #0a3634;
+    color: papayawhip;
+    font-size: 16px;
+    height: 15vh;
+    }
+    
+    #home {
+        color: #ffc059;
+        font-size: 16px;
+    }
+
+    #menu {
+        color: papayawhip;
+        font-size: 16px;
+        height: 30px;
+        width: 30px;
+    }
+    
+    #menu_wrapper{
+        width: 36px;
+        height: 36px;
+        padding: 2px;
+    }
+    
+    #navigation {
+    color:papayawhip;
+    font-size: 16px;
+    font-style: italic;
+    text-align: left;
+    }
+
+    .navbar-nav {
+        color: papayawhip;
+        background-color: rgba(7, 38, 37, 0.5);
+    }
+
+    .nav-link {
+        font-size: 16px;
+        margin: 0.5vw;
+        background-color: #072625;
+        border-radius: 1vw;
+        text-align: center;
+    }
+    
+    .nav-link:hover {
+        font-size: 16px;
+        margin: 0.5vw;
+        background-color: #0f5452;
+        border-radius: 1vw;
+        text-align: center;
+    }
+
+    .custom-toggler .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 239, 213, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    }
+
+    .custom-toggler.navbar-toggler {
+        border-color: papayawhip;
+    } 
+
+    .custom-toggler.navbar-toggler:hover {
+        border-color: #ff1c73;
+    }
+
+    .custom-toggler.navbar-toggler:visited {
+        border-color: #ff1c73;
+    }
+}

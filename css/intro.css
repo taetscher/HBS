@@ -1,0 +1,19 @@
+#intro {
+    padding: 3px;
+    border: none;
+    vertical-align: middle;
+    margin: 1vh;
+    font-size: 16px;
+}
+
+#ips_intro, #ts_intro {
+
+    border:none;
+    vertical-align: middle;
+    margin: 1vh;
+}
+
+.btn btn-primary{
+    cursor:pointer;
+    background: none;
+}

@@ -1,0 +1,57 @@
+<div class="col-lg-4">
+    <div class='bordered'>
+        <div class='container'>
+            <div class='row'>
+                <div class='col'>
+                    <img src='../img_resources/dr-eint.png' alt="pic_of_author" id='dr_eint'>
+                </div>
+                <div class='col'>
+                    <h4>About the Author</h4>
+                    <h3>Benjamin Schüpbach</h3>
+                    <p>Geographer, Handball Coach. I like to code, mainly in Python. Sometimes I find the courage to step into the world of website development.</p>
+                    <p><a href="mailto:schuepbachjamin@gmail.com">Email</a></p>
+                    <p><a href="https://github.com/taetscher">GitHub</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class='col-lg-8'>
+    <div class='bordered'>
+        <h4>About the Project</h4>
+        <p>This website visualizes the results of a <a href='https://github.com/taetscher/handballStats' target="_blank">project of mine</a>, where I automatically download (scrape) and analyze data from the <a href='https://www.handball.ch/de/matchcenter/' target="_blank">handball.ch</a> matchcenter. I use Python (<a href='https://www.selenium.dev/documentation/en/webdriver/' target="_blank">Selenium Webdriver</a>, <a href='https://pandas.pydata.org/pandas-docs/stable/index.html' target="_blank">Pandas</a>, <a href='https://matplotlib.org/index.html' target="_blank">Matplotlib</a>) to collect the data and visualize it statically, as well as JavaScript (<a href='https://d3js.org/' target="_blank">D3.js</a>) to create the interactive visualizations on this website.</p>
+    
+        <p>In the highest leagues of Swiss Handball, games (and player stats) are recorded using a feature called 'Liveticker'. Since I coach a team in such a league, I figured I would use this data, visualize it interactively and maybe gain some more insights into the performance of my team. Sadly, I could not find an API to get the data directly, so I had to resort to scraping it. Along the way I implemented a mechanism for data collection that lets me analyze additional teams with minimal effort, so therefore I ended up analyzing more than just my team's performance.</p>
+        
+        <h5>What I am proud of</h5>
+        <p>This webpage was designed to need as little maintenance as possilbe. The Dropdown menus where users can select teams, seasons and statistics, for example, are generated automatically. That is, if I push new data to the repository, these dropdowns are instantly up to date. No need to change a thing for this website.</p>
+        <p>Of course, I am equally as proud of writing a program that can gather and visualize data automatically from a website!</p>
+                
+        
+        <h5>Limitations, or: What I am not so proud of</h5>
+        <p>The page is currently only half mobile-ready. I will try to find a way to make it better for mobile usage - however this may prove to be rather difficult.</p>
+        <p>Furthermore, I would like to make it so the runner is executed automatically every Saturday and Sunday, so the whole workflow is fully automatic.</p>
+        
+        <h5>Contributions</h5>
+        <p>If you would like to contribute to this project, please feel free to do so. Either by shooting me an email or creating a pull request. Currently, I would be most appreciative of contributions towards the aforementioned synchronicity problems.</p>
+        
+    </div>
+    <div class='bordered'>
+        <h4>About the Data</h4>
+        
+        
+        <h5>Aquisition</h5>
+        <p>Data is aquired using a selenium webkit based webscraper, which is gathering all kinds of statistics from the handball.ch liveticker feature. All that needs to change in order to get statistics for another team is the options.py file in root of the handballStats repository. Everything else is handled dynamically. What I can see for the future is having a shell script run a smaller options.py on a Raspberry Pi 3 with only the current seasons of teams I'm interested in - half an hour to an hour after any of these teams completes a game. </p>
+        
+        <h5>Processing</h5>
+        <p>Data gathered this way is processed using python (pandas, matplotlib) and visualized a first time in the output_png folder in the repository.</p>
+        
+        
+        <h5>Visualizations</h5>
+        <p>As mentioned above, the data is visualized a first time using python and matplotlib. The much more interesting, interactive visualizations on this website are generated client-side with D3.js.</p>
+        
+        
+    </div>
+</div>

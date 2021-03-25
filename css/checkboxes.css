@@ -1,0 +1,25 @@
+#checkboxes {
+    padding: 10px;
+}
+
+.checkbox{
+    margin-left: 1vw;
+    margin-right: 1vw;
+    margin-top: 0.1vh;
+    margin-bottom: 0.1vh;
+    font-size: 14px;
+    display: inline-table;
+}
+
+.checkbox_box {
+    margin: 0.8vw;
+    transform: scale(1.7);
+}
+
+#checkbox_master {
+    margin: 1vw;
+    background-color: #0a3634;
+    border-color: #ffc059;
+    color: #ffc059;
+    
+}
