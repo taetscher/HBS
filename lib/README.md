@@ -8,7 +8,7 @@ For scraping the data from <a href="https://www.handball.ch/de/" target="blank">
 + ###### scraperPlayerStats.py
 
 ## Scripts handling the Plotting Part
-<a href="https://matplotlib.org/" target="blank">Matplotlib</a> and <a href="https://pandas.pydata.org/" target="blank">Pandas</a> were used in all of these to generate the plots in <a href="https://github.com/taetscher/handballStats/tree/master/output_png" target="blank">output_png</a>
+<a href="https://matplotlib.org/" target="blank">Matplotlib</a> and <a href="https://pandas.pydata.org/" target="blank">Pandas</a> were used in all of these to generate the plots in <a href="https://github.com/taetscher/HBS/tree/master/output_png" target="blank">output_png</a>
 + ###### plotterGameProgression.py
 + ###### plotterPlayerProgress.py
 + ###### plotterPlayerStats.py

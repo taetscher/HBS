@@ -1,7 +1,7 @@
 #output_csv
 
 In this directory you will find the pre-polished data used to generate the plots over in the
-<a href="https://github.com/taetscher/handballStats/tree/master/output_png" target="blank">output_png</a>
+<a href="https://github.com/taetscher/HBS/tree/master/output_png" target="blank">output_png</a>
 folder.
 
 ## gameProgressions

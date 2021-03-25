@@ -1,6 +1,6 @@
 # handballStats
 
-Have a look at this repo's <a href="https://taetscher.github.io/handballStats/index.html" target="blank">gh-pages page</a>!
+Have a look at this repo's <a href="https://taetscher.github.io/HBS/index.html" target="blank">gh-pages page</a>!
 
 This repository was created for me to learn about web scraping and git/github flow.
 If you have any comments, ideas for improvement, let me know!

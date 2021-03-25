@@ -13,11 +13,11 @@ This folder's subdirectory hierarchy looks as follows:
 In here you will find analysis of individual game's progressions. Data for this is scraped from <a href="https://www.handball.ch/de/matchcenter/spiele/386024" target="blank">"Spielverlauf" (game progression)</a>, which is recorded live while a game goes on.
 Let's look at an example:
 
-![Example gameProgression](https://github.com/taetscher/handballStats/blob/master/output_png/gameProgressions/Wacker%20Thun%20U15%20Elite/Saison%2019_20/20-01-26_SG%20LakeSide%20Wacker-Steffisburg_HSG%20Nordwest_goalDifferential.png "Example of Goal Differential over Time Analysis")
+![Example gameProgression](https://github.com/taetscher/HBS/blob/master/output_png/gameProgressions/Wacker%20Thun%20U15%20Elite/Saison%2019_20/20-01-26_SG%20LakeSide%20Wacker-Steffisburg_HSG%20Nordwest_goalDifferential.png "Example of Goal Differential over Time Analysis")
 
 Here you can see a game from the U15 league. The graphs in this folder show a game's goal differential over time, representing a team's performance (drops/increases) over the course of a game. For each season there is also a plot representing analysis of a team's performance over the course of a whole season.
 
-![Example gameProgression](https://github.com/taetscher/handballStats/blob/master/output_png/gameProgressions/Wacker%20Thun%20NLA/Saison%2017_18/All_Games_goalDifferential.png?raw=true "Example of Goal Differential over Time Analysis")
+![Example gameProgression](https://github.com/taetscher/HBS/blob/master/output_png/gameProgressions/Wacker%20Thun%20NLA/Saison%2017_18/All_Games_goalDifferential.png?raw=true "Example of Goal Differential over Time Analysis")
 
 These graphs look like the one above. The median performance of a team is calculated by taking the median of all moving average values at each minute of a game.
 This is supposed to be an indicator for a team's consistency: 
@@ -43,7 +43,7 @@ This folder's subdirectory hierarchy looks as follows:
 
 `team / season / individual players (& all players plotted against each other) / individual stats for individual players`
 
-![Example progress_plot](https://github.com/taetscher/handballStats/blob/master/output_png/progress_plots/Wacker%20Thun%20NLA/Saison%2019_20/Wyttenbach%20Ivan/pen_CHANCENAUSWERTUNG.png "Example of player Performance Plot")
+![Example progress_plot](https://github.com/taetscher/HBS/blob/master/output_png/progress_plots/Wacker%20Thun%20NLA/Saison%2019_20/Wyttenbach%20Ivan/pen_CHANCENAUSWERTUNG.png "Example of player Performance Plot")
 
 The above graph shows statistics of an expert penalty taker (Ivan Wyttenbach) over the course of his season 2019/2020.
 For each datapoint you can see how many goals out of how many attempts he scored.
