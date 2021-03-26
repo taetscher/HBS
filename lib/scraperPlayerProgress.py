@@ -77,7 +77,12 @@ def scrapePlayerProgress():
 
         # aggregate the stats
         # take the converted data and output the final, cleaned and aggregated data per season as csv
-        output_csv(get_team(team), season)
+        # first, check if this is really needed or not, if not continue without doing anything
+        if len(games) > 0:
+            print('new games scraped: ', len(games))
+            output_csv(get_team(team), season)
+        else:
+            print('no new games found, skipping...')
 
     # shut down webdriver
     driver.quit()
