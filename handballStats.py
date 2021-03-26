@@ -42,7 +42,10 @@ def handballStats():
         plotGameProgressions()
 
     end = datetime.now()
+    print()
+    print('#'*10)
     print(f'done. elapsed time: {end - start}')
+    print('#' * 10)
 
 
 if __name__ == '__main__':

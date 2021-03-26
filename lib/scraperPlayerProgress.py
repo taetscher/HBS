@@ -17,8 +17,11 @@ data_dir = '././playerProgress_data'
 
 
 def scrapePlayerProgress():
+    """
+    Function that handles scraping of the player progress statistics
 
-    #TODO: find a way to only do conversions for the files newly generated
+    :return: does not return, saves outputs into output_csv/progress_data
+    """
 
     # run firefox webdriver from executable path of your choice
     driver = webdriver.Chrome()
@@ -47,22 +50,11 @@ def scrapePlayerProgress():
         team_name, games = findGamesPage(driver, team, year_start, year_finish)
 
         # Check which (if any) games have already been scraped, discard them
-        existing_data = os.listdir(f'playerProgress_data/{get_team(team)}/{season}/raw_data')
-        existing_games = []
-        for file in existing_data:
-            game_nr = file[4:-4]
-            existing_games.append(eval(game_nr))
-
-        remove = []
-        for game in games:
-            if eval(game) in existing_games:
-                print(f'game #{game} has already been scraped, skipping')
-                remove.append(game)
-            else:
-                pass
-
-        for element in remove:
-            games.remove(element)
+        try:
+            check_dir = f'playerProgress_data/{get_team(team)}/{season}/raw_data'
+            games = check_for_already_scraped_games(games, check_dir, 4, -4)
+        except Exception as e:
+            print(e)
 
         # actual scraping
         for game in games:
@@ -83,21 +75,26 @@ def scrapePlayerProgress():
             except TypeError:
                 print(f'error. most likely the game ({game}) you are trying to download does not have stats available (yet)\nskipping...')
 
-
         # aggregate the stats
         # take the converted data and output the final, cleaned and aggregated data per season as csv
         output_csv(get_team(team), season)
 
-    # shut down firefox
+    # shut down webdriver
     driver.quit()
     print('\n', '-'*10)
-    print('scraping successfully terminated, closing firefox...')
+    print('scraping successfully terminated, closing webdriver...')
 
 
-def findGamesPage(driver,team,year_start,year_finish):
-    """finds all games played by specified team
+def findGamesPage(driver, team, year_start, year_finish):
+    """
+    Finds all games played by specified team.
 
-    returns a list of game ids"""
+    :param driver: selenium webdriver object
+    :param team: SHV team ID (season-specific)
+    :param year_start: starting year of a season (for 2021/2022 year_start = 21)
+    :param year_finish: ending year of a season (for 2021/2022 year_finish = 22)
+    :return: returns a list of game SHV game IDs
+    """
 
     # specify url
     urlpage = 'https://www.handball.ch/de/matchcenter/teams/{}#/games'.format(team)
@@ -130,7 +127,14 @@ def findGamesPage(driver,team,year_start,year_finish):
 
 
 def getAllGames(driver):
-    """helper function, retrieves and cleans up a list of all games played by specified team"""
+    """
+    Finds all games played by specified team in driver at 'https://www.handball.ch/de/matchcenter/teams/{}#/games'.
+    Checks if the games have already been played and removes games which won't be finished 1.5 hours in the future
+
+    :param driver: selenium webdriver object
+    :return: returns a list of valid games
+    """
+
     games = []
     time.sleep(1)
     table_rows = driver.find_elements_by_tag_name('tr')
@@ -170,9 +174,14 @@ def getAllGames(driver):
 
 
 def scrapeGame(link, team, driver):
-    """helper function. retrieves game statistics of input game-id
+    """
+    Helper function that scrapes statistics of input game-id
 
-    returns only statistics for specified team and input game"""
+    :param link: link to a game played and recorded with SHV Liveticker Feature
+    :param team: handball team to query for
+    :param driver: selenium webdriver object
+    :return: statistics for specified team and input game; the date of the game; the leage in which the game was played
+    """
 
     driver.get(link)
     time.sleep(2)
@@ -208,7 +217,16 @@ def scrapeGame(link, team, driver):
 
 
 def writer(game_stats, game, date, team, league):
-    """helper function. writes statistics of input game-id into csv file"""
+    """
+    Helper function that writes statistics of input game-id into raw_{game-ID}.csv file in playerProgress_data
+
+    :param game_stats: game statistics scraped from handball.ch
+    :param game: SHV game ID
+    :param date: date of the game played
+    :param team: SHV team ID (season-specific)
+    :param league: leage in which the game was played
+    :return: returns the filename of the raw_{game-ID}.csv file created
+    """
 
     with open(f'playerProgress_data/{get_team(team)}/{get_season(team)}/raw_data/raw_{game}.csv','wb') as outfile:
         #write in bytes mode ('wb') to avoid characters being saved wrongly
@@ -237,7 +255,13 @@ def writer(game_stats, game, date, team, league):
 
 
 def get_team(val):
-    """returns the key to a value in a dictionary within the options.py dictionary"""
+    """
+    Helper function that returns the key to a value in the options.py dictionary
+
+    :param val: SHV team ID (season-specific)
+    :return: returns the team name (key of value)
+    """
+
     for entry in teams_seasons.items():
         for season, number in entry[1].items():
             for element in number:
@@ -247,7 +271,13 @@ def get_team(val):
 
 
 def get_season(val):
-    """returns the season of a value in a dictionary within the options.py dictionary"""
+    """
+    Helper function that returns the key to a value in the options.py dictionary
+
+    :param val: SHV team ID (season-specific)
+    :return: returns the season name (key of value)
+    """
+
     for entry in teams_seasons.items():
         for season, number in entry[1].items():
             for element in number:
@@ -257,8 +287,17 @@ def get_season(val):
 
 
 def csvConverter(infile, team_folders, team_folder, season):
-    """ takes in messy raw data and turns it into readable csv format.
-    writes one output file for outfield players and one file for goalies"""
+    """
+    Converts messy raw data scraped from SHV page and turns it into readable csv format.
+    Writes one output csv per season for outfield players and for goalies.
+
+    :param infile: raw_{game-ID}.csv file with messy data
+    :param team_folders: path to team folders (playerProgress_data)
+    :param team_folder: path to team folder (specific subdirectory of team_folders)
+    :param season: the name of the season for which stats are converted
+    :return: does not return, but saves output .csv files at playerProgress_data
+    """
+
     game_number = infile[4:-4]
 
     data = []
@@ -350,10 +389,23 @@ def csvConverter(infile, team_folders, team_folder, season):
 
 
 def cleanUp(inlist):
-    return str(inlist).strip("['").strip("']").replace(',',' ')
+    """
+    Helper function that converts lists to strings without []
+    :param inlist: list
+    :return: string of list, where no [] are present and the separator is one empty space
+    """
+
+    return str(inlist).strip("['").strip("']").replace(',', ' ')
 
 
 def output_csv(team_folder, season):
+    """
+    Helper function that takes cleaned .csv files from csvConverter and outputs them to output_csv/progress_data
+
+    :param team_folder: the team name for which output csvs should be generated
+    :param season: the season name for which output csvs should be generated
+    :return: does not return, saves output csv files in output_csv/progress_data
+    """
 
     # read in newly generated, split csvs
     inputs = []
@@ -409,7 +461,17 @@ def output_csv(team_folder, season):
 
 
 def mergeStatsOutfield(games_list, player_list, stat, team_folder, season):
-    """merging stats across the season (stats per game per player)"""
+    """
+    Helper function that merges outfield player's stats from different games to get a csv where stats per game per
+    player are available.
+
+    :param games_list: list of games that are to be merged
+    :param player_list: list of all players that have played at least one game
+    :param stat: string of the statistic which is analyzed
+    :param team_folder: team name
+    :param season: name of the season which is analyzed
+    :return: returns a merged pandas dataframe object with stats per player per game
+    """
     
     # create a base dataframe of all players
     join_df = pd.DataFrame(list(player_list), columns=['SPIELER'])
@@ -420,9 +482,9 @@ def mergeStatsOutfield(games_list, player_list, stat, team_folder, season):
     # merge stats to the base dataframe using the date as column name
     for file in games_list:
         temp_df = pd.read_csv(f'{data_dir}/{team_folder}/{season}/{file}', encoding='utf-8').fillna(0)
-        merged = pd.merge(join_df, temp_df, left_on='SPIELER', right_on='SPIELER', how='outer')#.fillna(-1)
+        merged = pd.merge(join_df, temp_df, left_on='SPIELER', right_on='SPIELER', how='outer')
         merged = merged.drop(header, axis=1)
-        merged.rename(columns={stat : str(file[:8])}, inplace=True)
+        merged.rename(columns={stat: str(file[:8])}, inplace=True)
         join_df = merged
 
     # sort columns: first is SPIELER, then sort according to date
@@ -433,7 +495,17 @@ def mergeStatsOutfield(games_list, player_list, stat, team_folder, season):
 
 
 def mergeStatsGoalie(games_list,player_list,stat,team_folder,season):
-    """merging stats across the season (stats per game per player)"""
+    """
+    Helper function that merges goalie stats from different games to get a csv where stats per game per player are
+    available.
+
+    :param games_list: list of games that are to be merged
+    :param player_list: list of all goalies that have played at least one game
+    :param stat: string of the statistic which is analyzed
+    :param team_folder: team name
+    :param season: name of the season which is analyzed
+    :return: returns a merged pandas dataframe object with stats per goalie per game
+    """
 
     # create a base dataframe of all players
     join_df = pd.DataFrame(list(player_list), columns=['TORHÜTER'])
@@ -446,7 +518,7 @@ def mergeStatsGoalie(games_list,player_list,stat,team_folder,season):
         temp_df = pd.read_csv(f'{data_dir}/{team_folder}/{season}/{file}', encoding='utf-8').fillna(0)
         merged = pd.merge(join_df, temp_df, left_on='TORHÜTER', right_on='TORHÜTER', how='outer')#.fillna(-1)
         merged = merged.drop(header, axis=1)
-        merged.rename(columns={stat : str(file[:8])}, inplace=True)
+        merged.rename(columns={stat: str(file[:8])}, inplace=True)
         join_df = merged
 
     # sort columns: first is SPIELER, then sort according to date
@@ -458,9 +530,51 @@ def mergeStatsGoalie(games_list,player_list,stat,team_folder,season):
 
 
 def write(input_dataframe, team_folder, season, stat):
+    """
+    Helper function that actually writes information to output csvs generated in output_csv()
+
+    :param input_dataframe: the merged pandas dataframe from either mergeStatsOutfield or mergeStatsGoalie
+    :param team_folder: name of the team being analyzed
+    :param season: name of the season in which the games took place
+    :param stat: name of the statistic represented in the input_dataframe
+    :return: does not return anything, but saves output .csv files in output_csv/
+    """
+
     print(f'writing data to ././output_csv/progress_data/{team_folder}/{season}/{stat}')
     input_dataframe.to_csv(f'././output_csv/progress_data/{team_folder}/{season}/{stat}', index=False)
     return f'././output_csv/progress_data/{team_folder}/{season}/{stat}'
+
+
+def check_for_already_scraped_games(games, check_dir, gamenr_idx_from, gamenr_idx_to):
+    """
+    Helper function that checks for games which have already been scraped
+
+    :param games: list of SHV game IDs
+    :param check_dir: directory to check for games which have already been scraped
+    :param gamenr_idx_from: starting index of game number in csv filename
+    :param gamenr_idx_to: ending index of game number in csv filename
+    :return:
+    """
+
+    existing_data = os.listdir(check_dir)
+    existing_games = []
+
+    for file in existing_data:
+        game_nr = file[gamenr_idx_from:gamenr_idx_to]
+        existing_games.append(eval(game_nr))
+
+    remove = []
+    for game in games:
+        if eval(game) in existing_games:
+            print(f'game #{game} has already been scraped, skipping...')
+            remove.append(game)
+        else:
+            pass
+
+    for element in remove:
+        games.remove(element)
+
+    return games
 
 
 if __name__ == '__main__':
