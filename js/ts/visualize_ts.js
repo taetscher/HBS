@@ -442,11 +442,13 @@ export async function visualizeTS_allGames(in_array){
                 })
             }
 
-            //set up random color
+            // set up random color
             var color = d3.interpolateInferno(q*1/len);    
 
-            //append checkboxes to div and name them according to game date
-            var cb_game = stat.replace(/ /g,"_").replace('.',"_").replace('-', '_').replace('%', '_').replace('&', '-');
+            // set up namestring for each game
+            var cb_game = stat.replace(' _ ', ' vs ').replace(/ /g,"_").replace('.',"_").replace('-', '_').replace('%', '_').replace('&', '-');
+            
+            // append checkboxes to div and name them according to game date
             addCheckbox_ts(cb_game, color, q) 
 
             // add the area

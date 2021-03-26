@@ -63,8 +63,12 @@ export function addCheckbox_ts(id, color, q) {
         label.id = 'label_' + id
 
         // appending the created text to  
-        // the created label tag 
-        label.appendChild(document.createTextNode(id.replace(/_/g," ").slice(0,-4))); 
+        // the created label tag
+        var whole_text = id.replace(/_/g," ").slice(0,-4);
+        var date = whole_text.slice(0,8).replace(/ /g, '/');
+        var encounter = whole_text.slice(8);
+        var label_text = date + ', ' + encounter;
+        label.appendChild(document.createTextNode(label_text)); 
         
         // Assigning the attributes 
         // to created checkbox 
