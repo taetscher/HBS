@@ -201,7 +201,7 @@ export async function visualizeTS_allGames(in_array){
         var ts_baseurl = "https://raw.githubusercontent.com/taetscher/HBS/master/output_csv/gameProgressions/";
         var team = document.getElementById('dropdown_teams').innerHTML;
         var season = document.getElementById('dropdown_seasons').innerHTML;
-        var stat = encodeURIComponent(in_array[c]);
+        var stat = in_array[c];
         stat = stat.replace(/&amp;/g, '&')
         var dataURL = ts_baseurl+team+"/"+season+"/"+stat;
         dataURL = encodeURI(dataURL);
@@ -272,7 +272,7 @@ export async function visualizeTS_allGames(in_array){
         var ts_baseurl = "https://raw.githubusercontent.com/taetscher/HBS/master/output_csv/gameProgressions/";
         var team = document.getElementById('dropdown_teams').innerHTML;
         var season = document.getElementById('dropdown_seasons').innerHTML;
-        var stat = encodeURIComponent(in_array[q]);
+        var stat = in_array[q];
         stat = stat.replace(/&amp;/g, '&')
         var dataURL = ts_baseurl+team+"/"+season+"/"+stat;
         dataURL = encodeURI(dataURL)
@@ -307,188 +307,188 @@ export async function visualizeTS_allGames(in_array){
                 .y1(function(d) { return y(d.score); });
             
 
-        //ONLY ON THE FIRST ONE, ADD AXES, TITLE ETC.
-        if (q == 0){
+            //ONLY ON THE FIRST ONE, ADD AXES, TITLE ETC.
+            if (q == 0){
 
-            //console.log(q)
-            //console.log(in_array.length-1)
-            
-            // add the X gridlines
-            svg.append("g")			
-              .attr("class", "grid")
-              .attr("transform", "translate(0," + height + ")")
-              .call(make_x_gridlines()
-                  .tickSize(-height)
-                  .tickFormat("")
-                    )
+                //console.log(q)
+                //console.log(in_array.length-1)
 
-            // add the Y gridlines
-            svg.append("g")			
-              .attr("class", "grid")
-              .call(make_y_gridlines()
-                  .tickSize(-width)
-                  .tickFormat("")
-                    )
-            
-            // gridlines in x axis function
-            function make_x_gridlines() {		
-                return d3.axisBottom(x)
-                .ticks()
-                }
+                // add the X gridlines
+                svg.append("g")			
+                  .attr("class", "grid")
+                  .attr("transform", "translate(0," + height + ")")
+                  .call(make_x_gridlines()
+                      .tickSize(-height)
+                      .tickFormat("")
+                        )
 
-            // gridlines in y axis function
-            function make_y_gridlines() {
-                const yAxisTicks = y.ticks()
-                    .filter(tick => Number.isInteger(tick));            
+                // add the Y gridlines
+                svg.append("g")			
+                  .attr("class", "grid")
+                  .call(make_y_gridlines()
+                      .tickSize(-width)
+                      .tickFormat("")
+                        )
 
-                return d3.axisLeft(y)
-                .tickValues(yAxisTicks)
-                }
-
-            //add draw (as in score = 1/-0) line
-            svg.append("g")
-                .attr('class', 'draw')
-                .attr("transform", "translate(0," + y(0) + ")")
-                .append("line")
-                .attr("x2", width);
-
-            //add halftime line
-            svg.append("g")
-                .attr('class', 'halftime')
-                .attr("transform", "translate("+ x(30) + ",0)")
-                .append("line")
-                .attr("y2", height);
-
-            // add the X Axis
-            svg.append("g")
-                .attr('class', 'axes')
-                .attr("transform", "translate(0," + height + ")")
-                .call(d3.axisBottom(x));
-
-            // add the Y Axis
-            svg.append("g")
-                .attr('class', 'axes')
-                .call(make_y_gridlines()
-                     .tickFormat(d3.format('.0f')));
-
-            // text label for the x axis
-            svg.append("text")
-                .attr('class', 'axes-label')
-                .attr("transform", "translate(" + (width/2) + " ," + (height + margin.top/1.4) + ")")
-                .style("text-anchor", "middle")
-                .text("Game Time [minutes]");
-
-            // text label for the y axis
-            svg.append("text")
-                .attr('class', 'axes-label')
-                .attr("transform", "rotate(-90)")
-                .attr("y", 0 - margin.left)
-                .attr("x", 0 - (height / 2))
-                .attr("dy", "0.8em")
-                .style("text-anchor", "middle")
-                .text("Goal Differential"); 
-
-            // text label for the Title
-            svg.append("text")
-                .attr('class', 'chart-title')
-                .attr("transform", "translate(" + (width/2) + " ," + (0-margin.top/2) + ")")
-                .attr("text-anchor", "middle")   
-                .text(title);
-            
-            //add a button to show/hide all
-            var pDiv = document.getElementById('checkboxes');
-            var buttonDiv = document.createElement('div');
-            buttonDiv.className = 'd-inline-flex p-2 col-12'
-            buttonDiv.id = 'check_all'
-
-            var button = document.createElement('button');
-            button.className = "btn btn-primary btn-lg btn-block"
-            button.innerHTML = 'Check / Uncheck All'
-            button.id = 'checkbox_master';
-            button.value = 1;
-
-            buttonDiv.appendChild(button);
-            pDiv.appendChild(buttonDiv);
-
-
-            //prepare functions to manage the button
-            function checkAll(){
-                d3.selectAll('.checkbox_box').property('checked', true);
-                d3.selectAll('.area').attr('opacity', 1);
-            }
-            function uncheckAll(){
-                d3.selectAll('.checkbox_box').property('checked', false);
-                d3.selectAll('.area').attr('opacity', 0);
-            }
-
-            //select all paths and checkbox values and set them according to the button
-            d3.select('#checkbox_master').on('click', function(){
-                //check if checkboxes are turned on or off
-                var state = d3.select(this).property('value');
-
-                if (state == 1){
-                    //everything is checked, uncheck everything
-                    console.log('uncheck');
-                    uncheckAll();
-                    //set state to 0
-                    d3.select(this).property('value', 0);
-                }else{
-                    //everything is not checked, check everything
-                    console.log('check');
-                    checkAll();
-                    //set state to 1
-                    d3.select(this).property('value', 1);
-                }
-            })
-        }
-        
-        //set up random color
-        var color = d3.interpolateInferno(q*1/len);    
-        
-        //append checkboxes to div and name them according to players
-        var cb_game = stat.replace(/ /g,"_").replace('.',"_").replace('-', '_');
-        addCheckbox_ts(cb_game, color, q) 
-
-        // add the area
-        svg.append("path")
-            .data([data])
-            .attr("class", "area")
-            .attr("stroke", color)
-            .attr('stroke-width', '2px')
-            .attr('fill-opacity', 0.2)
-            .attr('opacity', 1)
-            .attr('id', 'line_'+ q)
-            .attr("d", area)
-            .on('mouseover', function(){
-                    d3.select(this)
-                        .style('fill-opacity', 1)
-                        .style('stroke-width', '4px')
-                        .raise();
-                    
-                    //highlight corresponding checkbox label
-                    var lineID = d3.select(this).attr('id');
-                    var state = d3.select(this).attr('opacity');
-                    
-                    if (state == 0){}
-                    else{
-                        d3.select('#label_'+ cb_game)
-                        .style('background-color', '#ff1c73');   
-                    }         
-                })
-            .on('mouseout', function(){
-                    d3.select(this)
-                        .style('fill-opacity', 0.2)
-                        .style('stroke-width', '2px');
-            
-                    var lineID = d3.select(this).attr('id');
-                    var state = d3.select(this).attr('opacity');
-                    
-                    if (state == 0){}
-                    else{
-                        d3.select('#label_' + cb_game)
-                        .style('background-color', null);   
+                // gridlines in x axis function
+                function make_x_gridlines() {		
+                    return d3.axisBottom(x)
+                    .ticks()
                     }
-                });
+
+                // gridlines in y axis function
+                function make_y_gridlines() {
+                    const yAxisTicks = y.ticks()
+                        .filter(tick => Number.isInteger(tick));            
+
+                    return d3.axisLeft(y)
+                    .tickValues(yAxisTicks)
+                    }
+
+                //add draw (as in score = 1/-0) line
+                svg.append("g")
+                    .attr('class', 'draw')
+                    .attr("transform", "translate(0," + y(0) + ")")
+                    .append("line")
+                    .attr("x2", width);
+
+                //add halftime line
+                svg.append("g")
+                    .attr('class', 'halftime')
+                    .attr("transform", "translate("+ x(30) + ",0)")
+                    .append("line")
+                    .attr("y2", height);
+
+                // add the X Axis
+                svg.append("g")
+                    .attr('class', 'axes')
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(d3.axisBottom(x));
+
+                // add the Y Axis
+                svg.append("g")
+                    .attr('class', 'axes')
+                    .call(make_y_gridlines()
+                         .tickFormat(d3.format('.0f')));
+
+                // text label for the x axis
+                svg.append("text")
+                    .attr('class', 'axes-label')
+                    .attr("transform", "translate(" + (width/2) + " ," + (height + margin.top/1.4) + ")")
+                    .style("text-anchor", "middle")
+                    .text("Game Time [minutes]");
+
+                // text label for the y axis
+                svg.append("text")
+                    .attr('class', 'axes-label')
+                    .attr("transform", "rotate(-90)")
+                    .attr("y", 0 - margin.left)
+                    .attr("x", 0 - (height / 2))
+                    .attr("dy", "0.8em")
+                    .style("text-anchor", "middle")
+                    .text("Goal Differential"); 
+
+                // text label for the Title
+                svg.append("text")
+                    .attr('class', 'chart-title')
+                    .attr("transform", "translate(" + (width/2) + " ," + (0-margin.top/2) + ")")
+                    .attr("text-anchor", "middle")   
+                    .text(title);
+
+                //add a button to show/hide all
+                var pDiv = document.getElementById('checkboxes');
+                var buttonDiv = document.createElement('div');
+                buttonDiv.className = 'd-inline-flex p-2 col-12'
+                buttonDiv.id = 'check_all'
+
+                var button = document.createElement('button');
+                button.className = "btn btn-primary btn-lg btn-block"
+                button.innerHTML = 'Check / Uncheck All'
+                button.id = 'checkbox_master';
+                button.value = 1;
+
+                buttonDiv.appendChild(button);
+                pDiv.appendChild(buttonDiv);
+
+
+                //prepare functions to manage the button
+                function checkAll(){
+                    d3.selectAll('.checkbox_box').property('checked', true);
+                    d3.selectAll('.area').attr('opacity', 1);
+                }
+                function uncheckAll(){
+                    d3.selectAll('.checkbox_box').property('checked', false);
+                    d3.selectAll('.area').attr('opacity', 0);
+                }
+
+                //select all paths and checkbox values and set them according to the button
+                d3.select('#checkbox_master').on('click', function(){
+                    //check if checkboxes are turned on or off
+                    var state = d3.select(this).property('value');
+
+                    if (state == 1){
+                        //everything is checked, uncheck everything
+                        console.log('uncheck');
+                        uncheckAll();
+                        //set state to 0
+                        d3.select(this).property('value', 0);
+                    }else{
+                        //everything is not checked, check everything
+                        console.log('check');
+                        checkAll();
+                        //set state to 1
+                        d3.select(this).property('value', 1);
+                    }
+                })
+            }
+
+            //set up random color
+            var color = d3.interpolateInferno(q*1/len);    
+
+            //append checkboxes to div and name them according to game date
+            var cb_game = stat.replace(/ /g,"_").replace('.',"_").replace('-', '_').replace('%', '_').replace('&', '-');
+            addCheckbox_ts(cb_game, color, q) 
+
+            // add the area
+            svg.append("path")
+                .data([data])
+                .attr("class", "area")
+                .attr("stroke", color)
+                .attr('stroke-width', '2px')
+                .attr('fill-opacity', 0.2)
+                .attr('opacity', 1)
+                .attr('id', 'line_'+ q)
+                .attr("d", area)
+                .on('mouseover', function(){
+                        d3.select(this)
+                            .style('fill-opacity', 1)
+                            .style('stroke-width', '4px')
+                            .raise();
+
+                        //highlight corresponding checkbox label
+                        var lineID = d3.select(this).attr('id');
+                        var state = d3.select(this).attr('opacity');
+
+                        if (state == 0){}
+                        else{
+                            d3.select('#label_'+ cb_game)
+                            .style('background-color', '#ff1c73');   
+                        }         
+                    })
+                .on('mouseout', function(){
+                        d3.select(this)
+                            .style('fill-opacity', 0.2)
+                            .style('stroke-width', '2px');
+
+                        var lineID = d3.select(this).attr('id');
+                        var state = d3.select(this).attr('opacity');
+
+                        if (state == 0){}
+                        else{
+                            d3.select('#label_' + cb_game)
+                            .style('background-color', null);   
+                        }
+                    });
             
         });
         
