@@ -17,6 +17,7 @@ export function visualizeTS(){
     var team = document.getElementById('dropdown_teams').innerHTML;
     var season = document.getElementById('dropdown_seasons').innerHTML;
     var stat = document.getElementById('dropdown_stats').innerHTML;
+    stat = stat.replace(/&amp;/g, '&')
     var dataURL = ts_baseurl+team+"/"+season+"/"+stat;
     dataURL = encodeURI(dataURL)
     
@@ -200,7 +201,8 @@ export async function visualizeTS_allGames(in_array){
         var ts_baseurl = "https://raw.githubusercontent.com/taetscher/HBS/master/output_csv/gameProgressions/";
         var team = document.getElementById('dropdown_teams').innerHTML;
         var season = document.getElementById('dropdown_seasons').innerHTML;
-        var stat = in_array[c];
+        var stat = encodeURIComponent(in_array[c]);
+        stat = stat.replace(/&amp;/g, '&')
         var dataURL = ts_baseurl+team+"/"+season+"/"+stat;
         dataURL = encodeURI(dataURL);
         
@@ -270,7 +272,8 @@ export async function visualizeTS_allGames(in_array){
         var ts_baseurl = "https://raw.githubusercontent.com/taetscher/HBS/master/output_csv/gameProgressions/";
         var team = document.getElementById('dropdown_teams').innerHTML;
         var season = document.getElementById('dropdown_seasons').innerHTML;
-        var stat = in_array[q];
+        var stat = encodeURIComponent(in_array[q]);
+        stat = stat.replace(/&amp;/g, '&')
         var dataURL = ts_baseurl+team+"/"+season+"/"+stat;
         dataURL = encodeURI(dataURL)
 

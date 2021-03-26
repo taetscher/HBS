@@ -9,6 +9,7 @@ export function vizUnClean(data){
     var team = document.getElementById('dropdown_teams').innerHTML;
     var season = document.getElementById('dropdown_seasons').innerHTML;
     var stat = document.getElementById('dropdown_stats').innerHTML;
+    stat = stat.replace(/&amp;/g, '&')
     var title = stat + " (" + team + ", " + season.replace('_', '/') + ")";
 
     

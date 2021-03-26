@@ -13,6 +13,7 @@ export function visualizeIPS(){
     var team = document.getElementById('dropdown_teams').innerHTML;
     var season = document.getElementById('dropdown_seasons').innerHTML;
     var stat = document.getElementById('dropdown_stats').innerHTML;
+    stat = stat.replace(/&amp;/g, '&')
     var dataURL = ts_baseurl+team+"/"+season+"/"+stat;
     dataURL = encodeURI(dataURL)
     console.log(dataURL)
