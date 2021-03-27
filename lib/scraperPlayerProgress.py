@@ -163,7 +163,9 @@ def getAllGames(driver):
             t_format = "%d.%m.%y %H:%M"
 
             game_played = datetime.strptime(date + ' ' + kickoff, t_format)
-            now = datetime.strptime(today, t_format) + timedelta(hours=1.5)
+            # take into account time to actually play the game (scrape only after game is finished!)
+            # timedelta 2 = 120mins; 90' game time, 20' possible overtime, 10' intermission between game and overtime
+            now = datetime.strptime(today, t_format) + timedelta(hours=2)
 
             if game_played > now:
                 print(f'game @{game_played} is played in the future, not scraping that...')
