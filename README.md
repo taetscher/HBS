@@ -14,6 +14,6 @@ Using the github pages page, data gained this way can be visualized for better u
 Currently I have a Raspberry Pi set up which updates the data in the following intervals:
 | Update Day | Update Hours      |
 |------------|-------------------|
-| Wednesday  | 22:00pm - 24:00pm |
-| Saturday   | 22:00pm - 24:00pm |
-| Sunday     | 22:00pm - 24:00pm |
+| Wednesday  | 10:00am - 24:00pm |
+| Saturday   | 10:00am - 24:00pm |
+| Sunday     | 10:00am - 24:00pm |
