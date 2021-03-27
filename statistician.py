@@ -11,7 +11,7 @@ import json
 
 def statistician():
     """
-    Runs handballStats on Wednesdays, Saturdays and Sundays between 22:00 and 24:00 pm
+    Runs handballStats on Wednesdays, Saturdays and Sundays between 10:00 and 23:00 pm
     :return: does not return anything, saves output_csvs and pushes changes to github
     """
 
@@ -21,7 +21,7 @@ def statistician():
         today = datetime.now().weekday()
         time = datetime.now().time().strftime("%H:%M:%S")
 
-        if (today in (2,5,6)) and (int(time.split(':')[0]) in range(10,15,1)):
+        if (today in (2,5,6)) and (int(time.split(':')[0]) in range(10,24,1)):
             interval = 45
             print(f'it is {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}, and I shall get statistics...')
             
