@@ -7,12 +7,13 @@ import os
 import smtplib
 import ssl
 import json
-import re
-
 
 
 def statistician():
-    """Runs handballStats on Wednesdays, Saturdays and Sundays between 22:00 and 24:00 pm"""
+    """
+    Runs handballStats on Wednesdays, Saturdays and Sundays between 22:00 and 24:00 pm
+    :return: does not return anything, saves output_csvs and pushes changes to github
+    """
 
     while True:
 
@@ -21,7 +22,7 @@ def statistician():
         time = datetime.now().time().strftime("%H:%M:%S")
 
         if (today in (2,5,6)) and (int(time.split(':')[0]) in range(10,15,1)):
-            interval = 60
+            interval = 45
             print(f'it is {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}, and I shall get statistics...')
             
             # scrape data
@@ -57,9 +58,9 @@ def statistician():
                 sys.exit()
                 
         else:
-            # if its a day for updates, set interval to one h, otherwise 2h
+            # if its a day for updates, set interval to 1h, otherwise 2h
             if today in (2,5,6):
-                interval = 120
+                interval = 60
             else:
                 interval = 240
             
@@ -79,12 +80,20 @@ def statistician():
 
 
 def sleep_minutes(minutes):
-    """sleeps the execution of a program for the amount of minutes specified"""
+    """
+    sleeps the execution of a program for the amount of minutes specified
+    :param minutes: amount of minutes to sleep the execution of the program
+    :return: executes time.sleep with the specified amount of minutes
+    """
+
     time.sleep(minutes * 60)
 
 
 def git_push():
-    """ pushes changes to the git repo"""
+    """
+    pushes changes to the git repo
+    :return: does not return anything, pushes to remote github repo
+    """
 
     PATH_OF_GIT_REPO = r'.git'  # make sure .git folder is properly configured
     COMMIT_MESSAGE = f'statistician @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}'
@@ -101,7 +110,10 @@ def git_push():
         
         
 def cleanupGameProgressions():
-    """gets rid of csvs from games that have not even been played yet"""
+    """
+    Helper function. Gets rid of csvs from games that have not even been played yet
+    :return: does not return, housekeeping function
+    """
     
     gp_path = './output_csv/gameProgressions'
     
@@ -134,7 +146,11 @@ def cleanupGameProgressions():
 
 
 def emailAlert(message):
-    """sends error message to let me know if statistician failed somehow"""
+    """
+    sends error message to let me know if statistician failed somehow
+    :param message: string message to send
+    :return: sends message via email
+    """
 
     # load credentials
     with open('gmail.credentials') as cred:
