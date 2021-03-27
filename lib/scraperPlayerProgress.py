@@ -41,7 +41,7 @@ def scrapePlayerProgress():
         except OSError:
             print(f'directories for team {get_team(team)} and season {get_season(team)} already exist, skipping...\n')
 
-    # scrape the data
+    # see if there is new data to get and scrape new games
     for team in teams:
         season = get_season(team)
         year_start = season.split(' ')[1].split('_')[0]
@@ -56,31 +56,34 @@ def scrapePlayerProgress():
         except Exception as e:
             print(e)
 
-        # actual scraping
-        for game in games:
-            print(f'scraping game {game}...')
-
-            time.sleep(0.5)
-            link = f'https://www.handball.ch/de/matchcenter/spiele/{game}'
-            time.sleep(0.5)
-            try:
-                # get the data
-                game_stats, date, league = scrapeGame(link, team_name, driver)
-                # write a raw file
-                raw_file = writer(game_stats, game, date, team, league)
-                # convert raw data to csv
-                csvConverter(raw_file, data_dir, get_team(team), season)
-                print(date, team, league)
-
-            except TypeError:
-                print(f'error. most likely the game ({game}) you are trying to download does not have stats available (yet)\nskipping...')
-
-        # aggregate the stats
-        # take the converted data and output the final, cleaned and aggregated data per season as csv
-        # first, check if this is really needed or not, if not continue without doing anything
+        # if there are new games to scrape, get the data
         if len(games) > 0:
+            for game in games:
+                print(f'scraping game {game}...')
+
+                time.sleep(0.5)
+                link = f'https://www.handball.ch/de/matchcenter/spiele/{game}'
+                time.sleep(0.5)
+                try:
+                    # get the data
+                    game_stats, date, league = scrapeGame(link, team_name, driver)
+                    # write a raw file
+                    raw_file = writer(game_stats, game, date, team, league)
+                    # convert raw data to csv
+                    csvConverter(raw_file, data_dir, get_team(team), season)
+                    print(date, team, league)
+
+                except TypeError:
+                    print(
+                        f'error. most likely the game ({game}) you are trying to download does not have stats available (yet)\nskipping...')
+
+            # aggregate the stats
+            # take the converted data and output the final, cleaned and aggregated data per season as csv
+            # first, check if this is really needed or not, if not continue without doing anything
             print('new games scraped: ', len(games))
             output_csv(get_team(team), season)
+
+        # otherwise, pass on to the next team
         else:
             print('no new games found, skipping...')
 
