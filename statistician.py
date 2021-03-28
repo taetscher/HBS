@@ -7,6 +7,7 @@ import os
 import smtplib
 import ssl
 import json
+import sys
 
 
 def statistician():
@@ -100,6 +101,10 @@ def git_push():
     print(f'commit message: {COMMIT_MESSAGE}')
     try:
         repo = Repo(PATH_OF_GIT_REPO)
+
+        status = repo.git.status()
+        print(status)
+
         repo.git.add(A=True)
         repo.index.commit(COMMIT_MESSAGE)
         origin = repo.remote(name='origin')
