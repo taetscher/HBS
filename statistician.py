@@ -105,15 +105,16 @@ def git_push():
         status = repo.git.status()
         diff = repo.index.diff('HEAD')
         print(status)
-        print(diff)
 
+        if len(diff)>0:
+            repo.index.commit(COMMIT_MESSAGE)
+            origin = repo.remote(name='origin')
+            origin.push()
+        else:
+            pass
 
-
-        repo.index.commit(COMMIT_MESSAGE)
-        origin = repo.remote(name='origin')
-        origin.push()
     except Exception as e:
-        print('ERROR')
+        print('Error while pushing to remote repository (in git_push): ')
         print(e)
         
         
