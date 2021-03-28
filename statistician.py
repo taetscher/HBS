@@ -95,8 +95,7 @@ def git_push():
     """
 
     PATH_OF_GIT_REPO = r'.git'  # make sure .git folder is properly configured
-    COMMIT_MESSAGE = f'statistician @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}'
-    print(f'commit message: {COMMIT_MESSAGE}')
+
     try:
         repo = Repo(PATH_OF_GIT_REPO)
         repo.git.add(A=True)
@@ -105,6 +104,9 @@ def git_push():
         print(status)
 
         if len(diff)>0:
+            # if there are changes in the files, push changes to github
+            COMMIT_MESSAGE = f'statistician @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}'
+            print(f'commit message: {COMMIT_MESSAGE}')
             repo.index.commit(COMMIT_MESSAGE)
             origin = repo.remote(name='origin')
             origin.push()
