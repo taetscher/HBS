@@ -7,7 +7,6 @@ import os
 import smtplib
 import ssl
 import json
-import sys
 
 
 def statistician():
@@ -52,7 +51,6 @@ def statistician():
             print('-' *15, '\npushing to origin...')
             try:
                 git_push()
-                print('push successful')
             except Exception as e:
                 print(e)
                 emailAlert(e)
@@ -110,8 +108,9 @@ def git_push():
             repo.index.commit(COMMIT_MESSAGE)
             origin = repo.remote(name='origin')
             origin.push()
+            print('push successful')
         else:
-            pass
+            print('nothing to push, skipping...')
 
     except Exception as e:
         print('Error while pushing to remote repository (in git_push): ')
