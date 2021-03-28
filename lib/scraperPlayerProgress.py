@@ -10,6 +10,7 @@ from datetime import timedelta
 
 # loading in the options file
 teams_seasons = options.teams_seasons
+xpaths = options.xpaths["playerProgress"]
 teams = []
 
 # global: data_dir variable to store the cleaned output
@@ -111,23 +112,23 @@ def findGamesPage(driver, team, year_start, year_finish):
     driver.get(urlpage)
     time.sleep(2)
 
-    team_name = driver.find_element_by_xpath(r'/html/body/div[2]/div[3]/div/div/div[2]/div/div[2]/h1').text
+    team_name = driver.find_element_by_xpath(xpaths['team_name']).text
     print(f'\nscraping games of team: {team_name}, season {year_start}/{year_finish}')
 
-    games_button = driver.find_element_by_xpath('//*[@id="games-tab"]')
+    games_button = driver.find_element_by_xpath(xpaths['games_button'])
     games_button.click()
 
     time.sleep(1)
-    first_date = driver.find_element_by_xpath('//*[@id="dateFromGames_1"]')
+    first_date = driver.find_element_by_xpath(xpaths['first_date'])
     first_date.send_keys(Keys.CONTROL + "a")
     first_date.send_keys('01.07.20'+year_start)
 
-    second_date = driver.find_element_by_xpath('//*[@id="dateToGames_1"]')
+    second_date = driver.find_element_by_xpath(xpaths['second_date'])
     second_date.send_keys(Keys.CONTROL + "a")
     second_date.send_keys(datetime.now().strftime('%d.%m.%Y'))
     second_date.send_keys(Keys.ENTER)
 
-    click_away = driver.find_element_by_xpath('//*[@id="games"]/div/div[1]/h2')
+    click_away = driver.find_element_by_xpath(xpaths['click_away'])
     click_away.click()
 
     games = getAllGames(driver)
@@ -195,22 +196,22 @@ def scrapeGame(link, team, driver):
 
     driver.get(link)
     time.sleep(2)
-    stats_tab = driver.find_element_by_xpath(r'//*[@id="stats-tab"]')
+    stats_tab = driver.find_element_by_xpath(xpaths['stats_tab'])
     stats_tab.click()
     time.sleep(2)
-    date = driver.find_element_by_xpath(r'/html/body/div[2]/div[1]/div[1]/div/div/div[2]/div[2]/div[3]/span[1]').text
-    left_table = driver.find_element_by_xpath(r'//*[@id="stats"]/div[2]/div[3]/div[1]/div/table')
-    right_table = driver.find_element_by_xpath(r'//*[@id="stats"]/div[2]/div[3]/div[2]')
+    date = driver.find_element_by_xpath(xpaths['game_date']).text
+    left_table = driver.find_element_by_xpath(xpaths['left_table'])
+    right_table = driver.find_element_by_xpath(xpaths['right_table'])
 
     left_content = left_table.get_attribute('innerText')
-    left_team = driver.find_element_by_xpath(r'//*[@id="stats"]/div[2]/div[3]/div[1]/div/table/thead[1]/tr/td/span').text
+    left_team = driver.find_element_by_xpath(xpaths['left_team']).text
     time.sleep(3)
 
     right_content = right_table.get_attribute('innerText')
-    right_team = driver.find_element_by_xpath(r'//*[@id="stats"]/div[2]/div[3]/div[2]/div/table/thead[1]/tr/td/span').text
+    right_team = driver.find_element_by_xpath(xpaths['right_team']).text
     time.sleep(3)
 
-    league = driver.find_element_by_xpath(r'/html/body/div[2]/div[1]/div[2]/div/div/div[6]/p').text
+    league = driver.find_element_by_xpath(xpaths['league']).text
     try:
         league = league.split('-')[1]
     except IndexError:

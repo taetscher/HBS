@@ -2,6 +2,7 @@ from lib.scraperPlayerProgress import *
 
 #loading in the options file
 teams_seasons = options.teams_seasons
+xpaths = options.xpaths["gameProgressions"]
 teams = []
 
 def scrapeGameProgression():
@@ -78,12 +79,12 @@ def getGameProgression(link, driver):
 
     driver.get(link)
     time.sleep(0.5)
-    tab = driver.find_element_by_xpath('//*[@id="live-tab"]')
+    tab = driver.find_element_by_xpath(xpaths['tab'])
     tab.click()
     time.sleep(1.5)
-    table = driver.find_element_by_xpath('//*[@id="live"]/div[2]/div[3]')
+    table = driver.find_element_by_xpath(xpaths['table'])
     table_content = table.get_attribute('innerText')
-    date = driver.find_element_by_xpath('/html/body/div[2]/div[1]/div[1]/div/div/div[2]/div[2]/div[3]/span[1]').get_attribute('innerText')
+    date = driver.find_element_by_xpath(xpaths['date']).get_attribute('innerText')
     date = date.split(' ')[1][:-6]
     date = date.split('.')
     date = "_".join(reversed(date))
