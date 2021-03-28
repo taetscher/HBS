@@ -90,7 +90,7 @@ def sleep_minutes(minutes):
 
 def git_push():
     """
-    pushes changes to the git repo
+    pushes changes to the git repo, if there have been changes
     :return: does not return anything, pushes to remote github repo
     """
 
@@ -98,6 +98,7 @@ def git_push():
 
     try:
         repo = Repo(PATH_OF_GIT_REPO)
+        # add all changes
         repo.git.add(A=True)
         status = repo.git.status()
         diff = repo.index.diff('HEAD')
