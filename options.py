@@ -2,7 +2,7 @@
 
 # --------------------GENERAL OPTIONS-------------------------------------
 # Game Progressions
-scrapeGameProgressions = False
+scrapeGameProgressions = True
 plotGameProgressions = False
 
 # Player Progress
