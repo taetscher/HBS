@@ -101,11 +101,14 @@ def git_push():
     print(f'commit message: {COMMIT_MESSAGE}')
     try:
         repo = Repo(PATH_OF_GIT_REPO)
-
-        status = repo.git.status()
-        print(status)
-
         repo.git.add(A=True)
+        status = repo.git.status()
+        diff = repo.index.diff('HEAD')
+        print(status)
+        print(diff)
+
+
+
         repo.index.commit(COMMIT_MESSAGE)
         origin = repo.remote(name='origin')
         origin.push()
