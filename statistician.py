@@ -32,7 +32,7 @@ def statistician():
             except Exception as e:
                 print(e)
                 emailAlert(e)
-                sys.exit()
+                continue
 
             sleep_minutes(0.1)
             
