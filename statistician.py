@@ -18,6 +18,7 @@ def statistician():
     while True:
 
         # check if it is wednesday, saturday or sunday and between 22:00 and 24:00
+        start = datetime.now()
         today = datetime.now().weekday()
         time = datetime.now().time().strftime("%H:%M:%S")
 
@@ -31,6 +32,7 @@ def statistician():
                 print('successfully scraped the stats')
             except Exception as e:
                 print(e)
+                log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', e)
                 emailAlert(e)
                 continue
 
@@ -42,6 +44,7 @@ def statistician():
                 cleanupGameProgressions()
             except Exception as e:
                 print(e)
+                log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', e)
                 emailAlert(e)
                 sys.exit()
             
@@ -53,6 +56,7 @@ def statistician():
                 git_push()
             except Exception as e:
                 print(e)
+                log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', e)
                 emailAlert(e)
                 sys.exit()
                 
@@ -70,10 +74,13 @@ def statistician():
                 print('house kept :)')
             except Exception as e:
                 print(e)
+                log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', e)
                 emailAlert(e)
                 sys.exit()
 
         # wait for 45 minutes before checking again
+        end = datetime.now()
+        log(f'Finished a run which took {end-start}')
         print('-' * 15)
         sleep_minutes(interval)
 
@@ -195,6 +202,27 @@ def emailAlert(message):
         server.quit()
 
     print(f'Sent email from {gmail_acc} to {receiver}')
+
+
+def log(message, errormessage=None):
+    """
+    Logs messages to a logfile, for debugging
+    :param message: string to log
+    :param errormessage: (voluntary) error message
+    :return: does not return, logs to file
+    """
+
+    with open('handballstats.log', 'a') as logfile:
+        logfile.write('-'*10)
+        logfile.write(f'\n log @{datetime.now().strftime("%d.%m.%Y %H:%M:%S")}\n')
+        logfile.write(message)
+        if errormessage is not None:
+            logfile.write('\n')
+            logfile.write('#'*10)
+            logfile.write(errormessage)
+            logfile.write('#' * 10)
+        logfile.write('-'*10)
+        logfile.write('\n\n')
 
 
 if __name__ == '__main__':
