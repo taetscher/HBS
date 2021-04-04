@@ -34,7 +34,6 @@ def statistician():
                 print(e)
                 log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', e)
                 emailAlert(e)
-                continue
 
             sleep_minutes(0.1)
             
