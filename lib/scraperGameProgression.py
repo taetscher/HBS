@@ -3,7 +3,7 @@ from lib.scraperPlayerProgress import *
 #loading in the options file
 teams_seasons = options.teams_seasons
 xpaths = options.xpaths["gameProgressions"]
-teams = []
+
 
 def scrapeGameProgression():
     """
@@ -16,6 +16,7 @@ def scrapeGameProgression():
     driver = webdriver.Chrome()
 
     #get team ids from options.py
+    teams = []
     for season in teams_seasons.values():
         for id in season.values():
             teams.extend(id)

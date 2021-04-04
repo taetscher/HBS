@@ -11,7 +11,7 @@ from datetime import timedelta
 # loading in the options file
 teams_seasons = options.teams_seasons
 xpaths = options.xpaths["playerProgress"]
-teams = []
+
 
 # global: data_dir variable to store the cleaned output
 data_dir = '././playerProgress_data'
@@ -28,6 +28,7 @@ def scrapePlayerProgress():
     driver = webdriver.Chrome()
 
     # get team ids from options.py
+    teams = []
     for season in teams_seasons.values():
         for id in season.values():
             teams.extend(id)
