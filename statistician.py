@@ -32,8 +32,8 @@ def statistician():
                 print('successfully scraped the stats')
             except Exception as e:
                 print(e)
-                log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', e)
-                emailAlert(e)
+                log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', str(e))
+                emailAlert(str(e))
 
             sleep_minutes(0.1)
             
@@ -43,8 +43,8 @@ def statistician():
                 cleanupGameProgressions()
             except Exception as e:
                 print(e)
-                log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', e)
-                emailAlert(e)
+                log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', str(e))
+                emailAlert(str(e))
                 sys.exit()
             
             sleep_minutes(0.1)
@@ -55,8 +55,8 @@ def statistician():
                 git_push()
             except Exception as e:
                 print(e)
-                log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', e)
-                emailAlert(e)
+                log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', str(e))
+                emailAlert(str(e))
                 sys.exit()
                 
         else:
@@ -73,8 +73,8 @@ def statistician():
                 print('house kept :)')
             except Exception as e:
                 print(e)
-                log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', e)
-                emailAlert(e)
+                log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', str(e))
+                emailAlert(str(e))
                 sys.exit()
 
         # wait for 45 minutes before checking again
