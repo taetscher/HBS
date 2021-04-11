@@ -59,7 +59,9 @@ def scrapePlayerProgress():
             games = check_for_already_scraped_games(games, check_dir, 4, -4)
         except Exception as e:
             print(e)
-
+        
+        print(f'games to scrape: {games}')
+        
         # if there are new games to scrape, get the data
         if len(games) > 0:
             for game in games:
@@ -169,21 +171,24 @@ def getAllGames(driver):
             game_played = datetime.strptime(date + ' ' + kickoff, t_format)
             # take into account time to actually play the game (scrape only after game is finished!)
             # timedelta 2 = 120mins; 90' game time, 20' possible overtime, 10' intermission between game and overtime
-            now = datetime.timedelta(hours=2).strptime(today, t_format)
+            now = datetime.timedelta(hours=2)
+            now = now.strptime(today, t_format)
+            
+            print(f'checking game @{game_played}')
 
             if game_played > now:
-                print(f'game @{game_played} is played in the future, not scraping that...')
+                print(f'game @{game_played} is played in the future or could be played right now (now it is {now}), not scraping that...')
             else:
                 #print(f'appending game played @{game_played}')
                 games.append(game)
 
         except Exception as e:
-            #print(e)
-            pass
+            print(e)
+            
 
     while ("" in games):
         games.remove("")
-
+    
     return games
 
 

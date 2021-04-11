@@ -24,7 +24,7 @@ def statistician():
 
         if (today in (2,5,6)) and (int(time.split(':')[0]) in range(10,24,1)):
             interval = 45
-            print(f'it is {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}, and I shall get statistics...')
+            print(f'\n\n\n{"#"*10}\nit is {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}, and I shall get statistics...\n{"#"*10}')
             
             # scrape data
             try:
