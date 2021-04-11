@@ -161,12 +161,9 @@ def getAllGames(driver):
 
             date_info = row.find_element_by_xpath(xpaths['date_info'])
             text = date_info.get_attribute('innerHTML')
-            print(text)
             text = text[3:].split('&nbsp;')
-
             date = text[0]
             kickoff = text[1]
-            today = datetime.now().strftime("%d.%m.%y %H:%M")
 
             t_format = "%d.%m.%y %H:%M"
 
@@ -174,12 +171,11 @@ def getAllGames(driver):
             # take into account time to actually play the game (scrape only after game is finished!)
             # timedelta 2 = 120mins; 90' game time, 20' possible overtime, 10' intermission between game and overtime
             now = datetime.now() + timedelta(hours=2)
-            now = now.strptime(today, t_format)
             
             print(f'checking game @{game_played}')
 
             if game_played > now:
-                print(f'game @{game_played} is played in the future or could be played right now (now it is {now}), not scraping that...')
+                print(f'game @{game_played.strftime(t_format)} is played in the future or could be played right now (scraping only games after {now.strftime(t_format)}), not scraping that...')
             else:
                 #print(f'appending game played @{game_played}')
                 games.append(game)
