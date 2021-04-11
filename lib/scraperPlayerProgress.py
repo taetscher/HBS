@@ -158,8 +158,10 @@ def getAllGames(driver):
 
         # get date of game and check if it is in the future, if so, skip
         try:
-            date_info = row.find_element_by_xpath('// *[ @ id = "{}"] / td[1] / span[1]'.format(row.get_attribute('id')))
+
+            date_info = row.find_element_by_xpath(xpaths['date_info'])
             text = date_info.get_attribute('innerHTML')
+            print(text)
             text = text[3:].split('&nbsp;')
 
             date = text[0]
@@ -171,7 +173,7 @@ def getAllGames(driver):
             game_played = datetime.strptime(date + ' ' + kickoff, t_format)
             # take into account time to actually play the game (scrape only after game is finished!)
             # timedelta 2 = 120mins; 90' game time, 20' possible overtime, 10' intermission between game and overtime
-            now = datetime.timedelta(hours=2)
+            now = datetime.now() + timedelta(hours=2)
             now = now.strptime(today, t_format)
             
             print(f'checking game @{game_played}')
@@ -183,7 +185,7 @@ def getAllGames(driver):
                 games.append(game)
 
         except Exception as e:
-            print(e)
+            pass
             
 
     while ("" in games):

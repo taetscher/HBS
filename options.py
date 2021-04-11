@@ -54,7 +54,7 @@ xpaths = {"playerProgress":{"team_name": r"/html/body/div[2]/div[3]/div/div/div[
                             "left_team": r'//*[@id="stats"]/div[2]/div[3]/div[1]/div/table/thead[1]/tr/td/span',
                             "right_team": r'//*[@id="stats"]/div[2]/div[3]/div[2]/div/table/thead[1]/tr/td/span',
                             "league": r'/html/body/div[2]/div[1]/div[2]/div/div/div[6]/p',
-                            "date_info": "Cannot be externalized, in getAllGames() inside scraperPlayerProgress.py"
+                            "date_info": ".//td[1]/span[1]"
                             },
           "gameProgressions":{"tab": r'//*[@id="live-tab"]',
                               "table": r'//*[@id="live"]/div[2]/div[3]',
