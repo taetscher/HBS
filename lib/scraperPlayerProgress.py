@@ -175,9 +175,9 @@ def getAllGames(driver):
             print(f'checking game {game} @{game_played}')
 
             if game_played > now:
-                print(f'game @{game_played.strftime(t_format)} is played in the future or could be played right now (scraping only games after {now.strftime(t_format)}), not scraping that...')
+                print(f'game @{game_played.strftime(t_format)} is played in the future or could be played right now, not scraping that...')
             else:
-                print(f'appending game {game} played @{game_played}')
+                #print(f'appending game {game} played @{game_played}')
                 games.append(game)
 
         except Exception as e:
