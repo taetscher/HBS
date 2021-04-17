@@ -87,6 +87,7 @@ def getGameProgression(link, driver):
     time.sleep(1.5)
     table = driver.find_element_by_xpath(xpaths['table'])
     table_content = table.get_attribute('innerText')
+    time.sleep(1)
     date = driver.find_element_by_xpath(xpaths['date']).get_attribute('innerText')
     date = date.split(' ')[1][:-6]
     date = date.split('.')
