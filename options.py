@@ -57,7 +57,7 @@ xpaths = {"playerProgress":{"team_name": r"/html/body/div[2]/div[3]/div/div/div[
                             "date_info": ".//td[1]/span[1]"
                             },
           "gameProgressions":{"tab": r'//*[@id="live-tab"]',
-                              "table": r'//*[@id="live"]/div[2]/div[3]',
+                              "table": r'//*[@id="live"]/div[3]/div[3]',
                               "date": r'/html/body/div[2]/div[1]/div[1]/div/div/div[2]/div[2]/div[3]/span[1]'
                               }
           }
