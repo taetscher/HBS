@@ -18,11 +18,11 @@ plotPlayerStats = False
 # --------------------TEAM/SEASONS SELECTION-------------------------------------
 # SHV-Numbers needed to get the right data. Adjust teams and seasons being processed here:
 
-teams_seasons = {"Wacker Thun U15 Elite": {"Saison 20_21":[32054]},
-                 "Wacker Thun U17 Elite": {"Saison 20_21":[31846]},
-                 "Wacker Thun U19 Elite": {"Saison 20_21":[31823]},
-                 "TV Steffisburg NLB": {"Saison 20_21":[32296]},
-                 "Wacker Thun NLA": {"Saison 20_21":[31821]}
+teams_seasons = {"Wacker Thun U15 Elite": {"Saison 21_22":[34523]},
+                 "Wacker Thun U17 Elite": {"Saison 21_22":[34381]},
+                 "Wacker Thun U19 Elite": {"Saison 21_22":[34278]},
+                 "TV Steffisburg NLB": {"Saison 21_22":[34170]},
+                 "Wacker Thun NLA": {"Saison 21_22":[34277]}
                  }
 
 # old configurations
