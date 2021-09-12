@@ -57,7 +57,6 @@ def statistician():
                 print(e)
                 log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', str(e))
                 emailAlert(str(e))
-                sys.exit()
                 
         else:
             # if its a day for updates, set interval to 1h, otherwise 2h
