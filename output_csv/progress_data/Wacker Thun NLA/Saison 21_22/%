@@ -1,17 +1,17 @@
-SPIELER,21_09_01,21_09_12
-Suter Nicolas,40.0,100.0
-Dähler Jonas,0.0,100.0
-Lüthi Dario,0.0,0.0
-Gruber Nino,0.0,75.0
-Dannmeyer Max,25.0,66.0
-Sorgen Janick,50.0,0.0
-Felder Gabriel,0.0,66.0
-Winkler Marc,0.0,0.0
-Huwyler Stefan,0.0,0.0
-Delhees Ron,44.0,40.0
-Guignet Damien,100.0,0.0
-Schwab Yannick,50.0,80.0
-Wick Flavio,0.0,0.0
-Linder Luca,50.0,0.0
-von Deschwanden Lukas,100.0,50.0
-Chernov Ivan,0.0,0.0
+SPIELER,21_09_01,21_09_12,21_09_16
+Linder Luca,50.0,0.0,100.0
+Lüthi Dario,0.0,0.0,0.0
+Huwyler Stefan,0.0,0.0,0.0
+Dannmeyer Max,25.0,66.0,0.0
+Guignet Damien,100.0,0.0,100.0
+Schwab Yannick,50.0,80.0,0.0
+Dähler Jonas,0.0,100.0,100.0
+Delhees Ron,44.0,40.0,60.0
+Winkler Marc,0.0,0.0,0.0
+von Deschwanden Lukas,100.0,50.0,33.0
+Chernov Ivan,0.0,0.0,66.0
+Felder Gabriel,0.0,66.0,0.0
+Sorgen Janick,50.0,0.0,33.0
+Gruber Nino,0.0,75.0,66.0
+Wick Flavio,0.0,0.0,0.0
+Suter Nicolas,40.0,100.0,91.0
