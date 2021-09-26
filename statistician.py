@@ -33,7 +33,7 @@ def statistician():
             except Exception as e:
                 print(e)
                 log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', str(e))
-                emailAlert(str(e))
+                #mailAlert(str(e))
 
             sleep_minutes(0.1)
             
@@ -44,8 +44,8 @@ def statistician():
             except Exception as e:
                 print(e)
                 log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', str(e))
-                emailAlert(str(e))
-                sys.exit()
+                #emailAlert(str(e))
+                #sys.exit()
             
             sleep_minutes(0.1)
             
@@ -56,7 +56,7 @@ def statistician():
             except Exception as e:
                 print(e)
                 log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', str(e))
-                emailAlert(str(e))
+                #emailAlert(str(e))
                 
         else:
             # if its a day for updates, set interval to 1h, otherwise 2h
@@ -73,8 +73,8 @@ def statistician():
             except Exception as e:
                 print(e)
                 log(f'Error @ {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}', str(e))
-                emailAlert(str(e))
-                sys.exit()
+                #emailAlert(str(e))
+                #sys.exit()
 
         # wait for 45 minutes before checking again
         end = datetime.now()
