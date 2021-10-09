@@ -1,17 +1,17 @@
-SPIELER,21_09_01,21_09_12,21_09_16
-Linder Luca,0,0,0
-Lüthi Dario,1,0,0
-Huwyler Stefan,3,0,1
-Dannmeyer Max,0,1,0
-Guignet Damien,1,0,0
-Schwab Yannick,0,0,3
-Dähler Jonas,0,0,0
-Delhees Ron,0,1,1
-Winkler Marc,0,0,0
-von Deschwanden Lukas,0,0,0
-Chernov Ivan,0,0,0
-Felder Gabriel,1,0,0
-Sorgen Janick,1,0,0
-Gruber Nino,0,0,1
-Wick Flavio,0,0,0
-Suter Nicolas,2,0,0
+SPIELER,21_09_01,21_09_12,21_09_16,21_09_25,21_10_02,21_10_06
+Felder Gabriel,1,0,0,0.0,0,0
+Dähler Jonas,0,0,0,1.0,0,0
+Guignet Damien,1,0,0,0.0,0,0
+Huwyler Stefan,3,0,1,1.0,0,1
+Lüthi Dario,1,0,0,3.0,0,0
+Linder Luca,0,0,0,,0,0
+Schwab Yannick,0,0,3,1.0,1,0
+Delhees Ron,0,1,1,1.0,0,0
+Gruber Nino,0,0,1,1.0,0,0
+Wick Flavio,0,0,0,0.0,0,0
+Sorgen Janick,1,0,0,0.0,0,1
+Winkler Marc,0,0,0,0.0,0,0
+Chernov Ivan,0,0,0,0.0,0,0
+von Deschwanden Lukas,0,0,0,0.0,0,0
+Dannmeyer Max,0,1,0,0.0,0,1
+Suter Nicolas,2,0,0,0.0,2,0
