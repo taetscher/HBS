@@ -42,23 +42,23 @@ teams_seasons = {"Wacker Thun U15 Elite": {"Saison 22_23":[35207]},
 # --------------------XPATHS FOR SCRAPERS-------------------------------------
 # xpaths to information relevant to the scrapers
 
-xpaths = {"playerProgress":{"team_name": r"/html/body/div[2]/div[3]/div/div/div[2]/div/div[2]/h1",
+xpaths = {"playerProgress":{"team_name": r"/html/body/div[3]/div[3]/div/div/div[2]/div/div[2]/h1",
                             "games_button": r'//*[@id="games-tab"]',
                             "first_date": r'//*[@id="dateFromGames_1"]',
                             "second_date": r'//*[@id="dateToGames_1"]',
                             "click_away": r'//*[@id="games"]/div/div[1]/h2',
                             "stats_tab": r'//*[@id="stats-tab"]',
-                            "game_date": r'/html/body/div[2]/div[1]/div[1]/div/div/div[2]/div[2]/div[3]/span[1]',
+                            "game_date": r'/html/body/div[3]/div[1]/div[1]/div/div/div[2]/div[2]/div[3]/span[1]',
                             "left_table": r'//*[@id="stats"]/div[2]/div[3]/div[1]/div/table',
                             "right_table": r'//*[@id="stats"]/div[2]/div[3]/div[2]',
                             "left_team": r'//*[@id="stats"]/div[2]/div[3]/div[1]/div/table/thead[1]/tr/td/span',
                             "right_team": r'//*[@id="stats"]/div[2]/div[3]/div[2]/div/table/thead[1]/tr/td/span',
-                            "league": r'/html/body/div[2]/div[1]/div[2]/div/div/div[6]/p',
+                            "league": r'/html/body/div[3]/div[1]/div[2]/div/div/div[6]/p',
                             "date_info": ".//td[1]/span[1]"
                             },
           "gameProgressions":{"tab": r'//*[@id="live-tab"]',
                               "table": r'//*[@id="live"]/div[3]/div[3]',
-                              "date": r'/html/body/div[2]/div[1]/div[1]/div/div/div[2]/div[2]/div[3]/span[1]'
+                              "date": r'/html/body/div[3]/div[1]/div[1]/div/div/div[2]/div[2]/div[3]/span[1]'
                               }
           }
 # -----------------------------------------------------------------------------
