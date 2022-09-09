@@ -334,7 +334,7 @@ def csvConverter(infile, team_folders, team_folder, season):
 
     #find where to slice the data to get player stats
     for entry in data:
-        if "'TORHÜTER,P/W,7M,%'" in str(entry):
+        if "'TORHÜTER*IN,P/W,7M,%'" in str(entry):
             index = data.index(entry)
             goalie_index = index + 1
         else:
