@@ -462,7 +462,7 @@ def output_csv(team_folder, season):
     goalie_players = []
     for file in goalies:
         temp_df = pd.read_csv(f'{data_dir}/{team_folder}/{season}/{file}', encoding='utf-8').fillna(0)
-        for player in temp_df['TORHÜTER']:
+        for player in temp_df['TORHÜTER*IN']:
             goalie_players.append(player)
     goalie_players = set(goalie_players)
 
@@ -525,7 +525,7 @@ def mergeStatsGoalie(games_list,player_list,stat,team_folder,season):
     """
 
     # create a base dataframe of all players
-    join_df = pd.DataFrame(list(player_list), columns=['TORHÜTER'])
+    join_df = pd.DataFrame(list(player_list), columns=['TORHÜTER*IN'])
 
     header = [r'P/W','7M',r'%']
     header.remove(stat)
@@ -533,14 +533,14 @@ def mergeStatsGoalie(games_list,player_list,stat,team_folder,season):
     # merge stats to the base dataframe using the date as column name
     for file in games_list:
         temp_df = pd.read_csv(f'{data_dir}/{team_folder}/{season}/{file}', encoding='utf-8').fillna(0)
-        merged = pd.merge(join_df, temp_df, left_on='TORHÜTER', right_on='TORHÜTER', how='outer')#.fillna(-1)
+        merged = pd.merge(join_df, temp_df, left_on='TORHÜTER*IN', right_on='TORHÜTER*IN', how='outer')#.fillna(-1)
         merged = merged.drop(header, axis=1)
         merged.rename(columns={stat: str(file[:8])}, inplace=True)
         join_df = merged
 
     # sort columns: first is SPIELER, then sort according to date
     join_df = join_df.reindex(sorted(join_df.columns), axis=1)
-    col = join_df.pop("TORHÜTER")
+    col = join_df.pop("TORHÜTER*IN")
     join_df.insert(0, col.name, col)
 
     return join_df
