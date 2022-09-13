@@ -38,7 +38,7 @@ export function vizUnClean(data){
     for (n=0; n < data.length; n++ ){
         //console.log(data[n])
         //convert the data
-        var player = data[n].SPIELER || data[n].TORHÜTER;
+        var player = data[n].SPIELER || data[n].TORHÜTER || data[n]['TORHÜTER*IN'];
         
         //convert statistics to numbers
         var statistics_r = Object.values(data[n]);
@@ -65,7 +65,7 @@ export function vizUnClean(data){
     for (n=0; n < len; n++ ){
         
         //convert the data
-        var player = data[n].SPIELER || data[n].TORHÜTER;
+        var player = data[n].SPIELER || data[n].TORHÜTER || data[n]['TORHÜTER*IN'];
         
         //convert dates to actual dates
         var dates = Object.keys(data[n]);
