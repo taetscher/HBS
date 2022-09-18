@@ -443,7 +443,7 @@ def output_csv(team_folder, season):
     # first, generate a list of all players who have played over the course of the whole season
     outfield_players = []
     for file in outfield:
-        temp_df = pd.read_csv(f'{data_dir}/{team_folder}/{season}/{file}', encoding='utf-8').fillna(0)
+        temp_df = pd.read_csv(f'{data_dir}/{team_folder}/{season}/{file}', encoding='utf-8').fillna(0).reset_index()
         for player in temp_df['SPIELER']:
             outfield_players.append(player)
     outfield_players = set(outfield_players)
@@ -461,7 +461,7 @@ def output_csv(team_folder, season):
     # second, generate a list of all goalies who have played over the course of the whole season
     goalie_players = []
     for file in goalies:
-        temp_df = pd.read_csv(f'{data_dir}/{team_folder}/{season}/{file}', encoding='utf-8').fillna(0)
+        temp_df = pd.read_csv(f'{data_dir}/{team_folder}/{season}/{file}', encoding='utf-8').fillna(0).reset_index()
         for player in temp_df['TORHÜTER*IN']:
             goalie_players.append(player)
     goalie_players = set(goalie_players)
