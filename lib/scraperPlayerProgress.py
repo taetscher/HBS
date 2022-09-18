@@ -505,6 +505,7 @@ def mergeStatsOutfield(games_list, player_list, stat, team_folder, season):
         join_df = merged
 
     # sort columns: first is SPIELER, then sort according to date
+    join_df = join_dv.loc[:,~join_df.duplicated()]
     join_df = join_df.reindex(sorted(join_df.columns), axis=1)
     col = join_df.pop("SPIELER")
     join_df.insert(0, col.name, col)
@@ -539,6 +540,7 @@ def mergeStatsGoalie(games_list,player_list,stat,team_folder,season):
         join_df = merged
 
     # sort columns: first is SPIELER, then sort according to date
+    join_df = join_dv.loc[:,~join_df.duplicated()]
     join_df = join_df.reindex(sorted(join_df.columns), axis=1)
     col = join_df.pop("TORHÜTER*IN")
     join_df.insert(0, col.name, col)
