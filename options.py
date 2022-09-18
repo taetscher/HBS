@@ -21,7 +21,7 @@ plotPlayerStats = False
 teams_seasons = {
     "Wacker Thun U15 Elite": {"Saison 22_23":[35207]},
     "Wacker Thun U17 Elite": {"Saison 22_23":[35200]},
-    "Wacker Thun NLA": {"Saison 22_23":[35196]},
+    "Wacker Thun NLA": {"Saison 22_23":[35196]}
 }
 
 # old configurations
