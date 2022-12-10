@@ -41,7 +41,7 @@ teams_seasons = {
 # --------------------XPATHS FOR SCRAPERS-------------------------------------
 # xpaths to information relevant to the scrapers
 
-xpaths = {"playerProgress":{"team_name": r"/html/body/div[3]/div[3]/div/div/div[2]/div/div[2]/h1",
+xpaths = {"playerProgress":{"team_name": r"/html/body/div[3]/div[1]/div[1]/div/div/div[2]/div[1]/div[1]",
                             "games_button": r'//*[@id="games-tab"]',
                             "first_date": r'//*[@id="dateFromGames_1"]',
                             "second_date": r'//*[@id="dateToGames_1"]',
