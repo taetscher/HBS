@@ -39,6 +39,7 @@ def handballStats():
             scrapeGameProgression()
         except Exception as e:
             print(f"ERROR: Could not scrape GameProgressions, exception: {e}")
+            print("If Exception was 'Kader', there might not be stats for this game")
 
     if options.plotGameProgressions:
         print("\n", "-" * 30, "\n", "Plotting Game Progression", "\n", "-" * 30, "\n")

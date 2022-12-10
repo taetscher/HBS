@@ -1,7 +1,7 @@
 So,28.08.22,08:00
 
 SG,LakeSide,Wacker-Steffisburg
-SPIELER,TORE,7M,%,TF,V,2',D
+KADER,TORE,7M,%,TF,V,2',D
 1,LEUENBERGER,Timon,0,0,,,0,0,0
 2,LIECHTI,Björn,0,0,,,0,1,0
 3,LÜTHI,Flurin,2/3,0,66,,0,0,0
@@ -21,9 +21,9 @@ SPIELER,TORE,7M,%,TF,V,2',D
 21,NEIGER,Dominic,2/5,2/2,40,3,0,0,0
 22,Strikcani,Artan,0/3,0,0,1,0,0,0
 25,Marthaler,Ivan,1/1,1/1,100,5,0,0,0
-""
+
 TORHÜTER*IN,P/W,7M,%
 16,Hodler,Fynn,9/31,1/2,30
-""
+
 STAFF,V,2',D
 A,a,0,0,0

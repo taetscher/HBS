@@ -1,7 +1,7 @@
 So,04.09.22,15:00
 MU17E
 SG,LakeSide,Wacker-Steffisburg
-SPIELER,TORE,7M,%,TF,V,2',D
+KADER,TORE,7M,%,TF,V,2',D
 2,LIECHTI,Björn,0,0,,2,1,0,0
 3,LÜTHI,Flurin,3/6,0,50,2,0,0,0
 6,DÄHLER,Nicolas,7/7,0,100,,0,0,0
@@ -16,11 +16,11 @@ SPIELER,TORE,7M,%,TF,V,2',D
 21,NEIGER,Dominic,6/10,2/5,60,3,1,0,0
 22,STRIKCANI,Artan,1/1,0,100,,0,0,0
 25,MARTHALER,Ivan,2/3,0,66,3,0,0,0
-""
+
 TORHÜTER*IN,P/W,7M,%
 12,SOMMER,Luca,3/13,0/1,24
 16,HODLER,Fynn,12/30,,40
-""
+
 STAFF,V,2',D
 A,CASPAR,Adrian,1,0,0
 B,DÄHLER,Sandro,0,0,0

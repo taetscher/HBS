@@ -86,15 +86,15 @@ def scrapePlayerProgress():
                     print(
                         f'error. most likely the game ({game}) you are trying to download does not have stats available (yet)\nskipping...')
 
-            # aggregate the stats
-            # take the converted data and output the final, cleaned and aggregated data per season as csv
-            # first, check if this is really needed or not, if not continue without doing anything
-            print('new games scraped: ', len(games))
-            output_csv(get_team(team), season)
-
         # otherwise, pass on to the next team
         else:
             print('no new games found, skipping...')
+
+        # aggregate the stats
+        # take the converted data and output the final, cleaned and aggregated data per season as csv
+        # first, check if this is really needed or not, if not continue without doing anything
+        output_csv(get_team(team), season)
+
 
     # shut down webdriver
     driver.quit()
@@ -508,8 +508,6 @@ def mergeStatsOutfield(games_list, player_list, stat, team_folder, season):
         join_df = merged
 
     # sort columns: first is SPIELER, then sort according to date
-    join_df = join_df.loc[:,~join_df.duplicated()]
-    join_df = join_df.reindex(sorted(join_df.columns), axis=1)
     col = join_df.pop("KADER")
     join_df.insert(0, col.name, col)
     return join_df
@@ -543,8 +541,6 @@ def mergeStatsGoalie(games_list,player_list,stat,team_folder,season):
         join_df = merged
 
     # sort columns: first is SPIELER, then sort according to date
-    join_df = join_df.loc[:,~join_df.duplicated()]
-    join_df = join_df.reindex(sorted(join_df.columns), axis=1)
     col = join_df.pop("TORHÜTER*IN")
     join_df.insert(0, col.name, col)
 
