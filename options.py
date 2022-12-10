@@ -6,7 +6,7 @@ scrapeGameProgressions = True
 plotGameProgressions = False
 
 # Player Progress
-scrapePlayerProgress = False
+scrapePlayerProgress = True
 plotPlayerProgress = False
 
 # Player Stats (not fully implemented yet)

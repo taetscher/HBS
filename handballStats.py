@@ -23,16 +23,22 @@ def handballStats():
     # --------------------------------
 
     if options.scrapePlayerProgress:
-        print("\n", "-" * 30, "\n", "Scraping Player Progress", "\n", "-" * 30, "\n")
-        scrapePlayerProgress()
+        try:
+            print("\n", "-" * 30, "\n", "Scraping Player Progress", "\n", "-" * 30, "\n")
+            scrapePlayerProgress()
+        except Exception as e:
+            print(f"ERROR: Could not scrape PlayerProgress, exception: {e}")
 
     if options.plotPlayerProgress:
         print("\n", "-" * 30, "\n", "Plotting Player Progress", "\n", "-" * 30, "\n")
         #plotPlayerProgress()
 
     if options.scrapeGameProgressions:
-        print("\n", "-" * 30, "\n", "Scraping Game Progression", "\n", "-" * 30, "\n")
-        scrapeGameProgression()
+        try:
+            print("\n", "-" * 30, "\n", "Scraping Game Progression", "\n", "-" * 30, "\n")
+            scrapeGameProgression()
+        except Exception as e:
+            print(f"ERROR: Could not scrape GameProgressions, exception: {e}")
 
     if options.plotGameProgressions:
         print("\n", "-" * 30, "\n", "Plotting Game Progression", "\n", "-" * 30, "\n")
