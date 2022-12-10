@@ -444,7 +444,7 @@ def output_csv(team_folder, season):
     outfield_players = []
     for file in outfield:
         temp_df = pd.read_csv(f'{data_dir}/{team_folder}/{season}/{file}', encoding='utf-8').fillna(0).reset_index()
-        for player in temp_df['SPIELER']:
+        for player in temp_df['KADER']:
             outfield_players.append(player)
     outfield_players = set(outfield_players)
 
@@ -491,7 +491,7 @@ def mergeStatsOutfield(games_list, player_list, stat, team_folder, season):
     """
     
     # create a base dataframe of all players
-    join_df = pd.DataFrame(list(player_list), columns=['SPIELER'])
+    join_df = pd.DataFrame(list(player_list), columns=['KADER'])
 
     header = ['TORE', '7M', r'%', 'TF', 'V', r"2'", 'D']
     header.remove(stat)
@@ -499,7 +499,7 @@ def mergeStatsOutfield(games_list, player_list, stat, team_folder, season):
     # merge stats to the base dataframe using the date as column name
     for file in games_list:
         temp_df = pd.read_csv(f'{data_dir}/{team_folder}/{season}/{file}', encoding='utf-8').fillna(0)
-        merged = pd.merge(join_df, temp_df, left_on='SPIELER', right_on='SPIELER', how='outer')
+        merged = pd.merge(join_df, temp_df, left_on='KADER', right_on='KADER', how='outer')
         merged = merged.drop(header, axis=1)
         merged.rename(columns={stat: str(file[:8])}, inplace=True)
         join_df = merged

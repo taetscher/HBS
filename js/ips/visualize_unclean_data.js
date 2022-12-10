@@ -38,7 +38,7 @@ export function vizUnClean(data){
     for (n=0; n < data.length; n++ ){
         //console.log(data[n])
         //convert the data
-        var player = data[n].SPIELER || data[n].TORHÜTER || data[n]['TORHÜTER*IN'];
+        var player = data[n].SPIELER || data[n].KADER ||  data[n].TORHÜTER || data[n]['TORHÜTER*IN'];
         
         //convert statistics to numbers
         var statistics_r = Object.values(data[n]);
