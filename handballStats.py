@@ -1,9 +1,6 @@
-from lib.plotterPlayerProgress import plotPlayerProgress
-from lib.plotterPlayerStats import plotPlayerStats
 from lib.scraperPlayerProgress import scrapePlayerProgress
 from lib.scraperPlayerStats import scrapePlayerStats
 from lib.scraperGameProgression import scrapeGameProgression
-from lib.plotterGameProgression import plotGameProgressions
 from datetime import datetime
 import options
 
@@ -31,7 +28,7 @@ def handballStats():
 
     if options.plotPlayerProgress:
         print("\n", "-" * 30, "\n", "Plotting Player Progress", "\n", "-" * 30, "\n")
-        plotPlayerProgress()
+        #plotPlayerProgress()
 
     if options.scrapeGameProgressions:
         print("\n", "-" * 30, "\n", "Scraping Game Progression", "\n", "-" * 30, "\n")
@@ -39,7 +36,7 @@ def handballStats():
 
     if options.plotGameProgressions:
         print("\n", "-" * 30, "\n", "Plotting Game Progression", "\n", "-" * 30, "\n")
-        plotGameProgressions()
+        #plotGameProgressions()
 
     end = datetime.now()
     print()

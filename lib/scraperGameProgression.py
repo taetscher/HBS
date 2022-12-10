@@ -15,7 +15,7 @@ def scrapeGameProgression():
     # run firefox webdriver from executable path of your choice
     opts = webdriver.ChromeOptions()
     opts.add_argument('--no-sandbox')
-    driver = webdriver.Chrome(options=opts)
+    driver = webdriver.Chrome(options=opts, executable_path=r"C:\Users\Benjamin Schüpbach\Desktop\Coding\chromedriver_win32\chromedriver.exe")
 
     #get team ids from options.py
     teams = []
