@@ -266,6 +266,7 @@ export async function visualizeTS_allGames(in_array){
     y.domain([d3.min(y_minima), d3.max(y_maxima)]);
     
     var q;
+    var data_for_all_games = {};
     //LOOP OVER ALL CSVS AND ADD THEM TO CANVAS
     for (q=0; q<len; q++){        
         //construct an url to the base data
@@ -300,12 +301,16 @@ export async function visualizeTS_allGames(in_array){
                 d.score = formatScore(d.score, homeAway)
                 });
             
+            
+            
             // define the area
             var area = d3.area()
                 .x(function(d) { return x(d.timestamp); })
                 .y0(y(0))
-                .y1(function(d) { return y(d.score); });
+                .y1(function(d) { return y(d.score); });   
             
+            // export the formatted data
+            data_for_all_games["game_"+q] = area;
 
             //ONLY ON THE FIRST ONE, ADD AXES, TITLE ETC.
             if (q == 0){
@@ -494,8 +499,9 @@ export async function visualizeTS_allGames(in_array){
             
         });
         
-        //on the last pass, add a button to show/hide checkboxes
+        
         if (q == len-1){
+            //on the last pass, add a button to show/hide checkboxes
             var myDiv = document.getElementById('sh_button');
             var sh_b = document.createElement('BUTTON');
             sh_b.innerHTML = '↓↓ advanced selection ↓↓';
@@ -515,9 +521,38 @@ export async function visualizeTS_allGames(in_array){
                 }
             })
             myDiv.appendChild(sh_b)
+            
+            // also add a mean/median line to indicate trends at different stages
+            // of a game
+            
+            // data manipulation
+            console.log(data_for_all_games);
+            
+            var average = {};
+            
+            average.push({
+                name: "mean",
+                values: data_for_all_games["game_0"].map(function(d) {
+                    return {date: d.timestamp, score: d3.mean(color.domain().map(function(e) { return +d[e]; } ))};
+                })
+            });
+
+            // define the line
+            var av_line = d3.line()
+                .x(function(d) { return x(d.x_axis); })
+                .y(function(d) { return y(d.y_axis); })
+                .curve(d3.curveBasis);
+            
+            // add the area
+            svg.append("path")
+                .data([average])
+                .attr("class", "AverageLine")
+                .attr("stroke", "white")
+                .attr('stroke-width', '5px')
+                .attr('fill-opacity', 0)
+                .attr('id', 'average')
+                .attr("d", av_line)
+
         }
-    }
-    
-    //TODO: add median performance line with tooltip
-    
+    }  
 }
