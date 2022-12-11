@@ -1,6 +1,6 @@
 from lib.scraperPlayerProgress import scrapePlayerProgress
-from lib.scraperPlayerStats import scrapePlayerStats
 from lib.scraperGameProgression import scrapeGameProgression
+from lib.plotterGameProgression import plotGameProgressions
 from datetime import datetime
 import options
 
@@ -42,8 +42,8 @@ def handballStats():
             print("If Exception was 'Kader', there might not be stats for this game")
 
     if options.plotGameProgressions:
-        print("\n", "-" * 30, "\n", "Plotting Game Progression", "\n", "-" * 30, "\n")
-        #plotGameProgressions()
+        print("\n", "-" * 30, "\n", "Calculating Median Performance", "\n", "-" * 30, "\n")
+        plotGameProgressions()
 
     end = datetime.now()
     print()
