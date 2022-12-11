@@ -28,9 +28,9 @@ def scrapePlayerProgress():
     opts = webdriver.ChromeOptions()
     opts.add_argument('--no-sandbox')
     # for use on desktop:
-    driver = webdriver.Chrome(options=opts,
-                              executable_path=r"C:\Users\Benjamin Schüpbach\Desktop\Coding\chromedriver_win32\chromedriver.exe")
-    #driver = webdriver.Chrome(options=opts)
+    #  driver = webdriver.Chrome(options=opts,
+    #                            executable_path=r"C:\Users\Benjamin Schüpbach\Desktop\Coding\chromedriver_win32\chromedriver.exe")
+    driver = webdriver.Chrome(options=opts)
 
     # get team ids from options.py
     teams = []
@@ -492,9 +492,12 @@ def mergeStatsOutfield(games_list, player_list, stat, team_folder, season):
     :param season: name of the season which is analyzed
     :return: returns a merged pandas dataframe object with stats per player per game
     """
-    
+
     # create a base dataframe of all players
-    join_df = pd.DataFrame(list(player_list), columns=['KADER'])
+    capitalized = []
+    for player in player_list:
+        capitalized.append(player.upper())
+    join_df = pd.DataFrame(capitalized, columns=['KADER'])
 
     header = ['TORE', '7M', r'%', 'TF', 'V', r"2'", 'D']
     header.remove(stat)
@@ -502,15 +505,15 @@ def mergeStatsOutfield(games_list, player_list, stat, team_folder, season):
     # merge stats to the base dataframe using the date as column name
     for file in games_list:
         temp_df = pd.read_csv(f'{data_dir}/{team_folder}/{season}/{file}', encoding='utf-8').fillna(0)
+        temp_df['KADER'] = temp_df['KADER'].str.upper()
         merged = pd.merge(join_df, temp_df, left_on='KADER', right_on='KADER', how='outer')
         merged = merged.drop(header, axis=1)
         merged.rename(columns={stat: str(file[:8])}, inplace=True)
         join_df = merged
 
     # sort columns: first is SPIELER, then sort according to date
-    #TODO: find out why this fails
-    #join_df = join_df.loc[:, ~join_df.duplicated()].copy()
-
+    join_df = join_df.loc[:, ~join_df.columns.duplicated()]  # drop columns with the same name (e.g. 2 games on a day)
+    join_df = join_df.drop_duplicates()  # drop duplicate entries
     join_df = join_df.reindex(sorted(join_df.columns), axis=1)
     col = join_df.pop("KADER")
     join_df.insert(0, col.name, col)
@@ -531,7 +534,10 @@ def mergeStatsGoalie(games_list,player_list,stat,team_folder,season):
     """
 
     # create a base dataframe of all players
-    join_df = pd.DataFrame(list(player_list), columns=['TORHÜTER*IN'])
+    capitalized = []
+    for player in player_list:
+        capitalized.append(player.upper())
+    join_df = pd.DataFrame(capitalized, columns=['TORHÜTER*IN'])
 
     header = [r'P/W','7M',r'%']
     header.remove(stat)
@@ -539,14 +545,15 @@ def mergeStatsGoalie(games_list,player_list,stat,team_folder,season):
     # merge stats to the base dataframe using the date as column name
     for file in games_list:
         temp_df = pd.read_csv(f'{data_dir}/{team_folder}/{season}/{file}', encoding='utf-8').fillna(0)
+        temp_df['TORHÜTER*IN'] = temp_df['TORHÜTER*IN'].str.upper()
         merged = pd.merge(join_df, temp_df, left_on='TORHÜTER*IN', right_on='TORHÜTER*IN', how='outer')#.fillna(-1)
         merged = merged.drop(header, axis=1)
         merged.rename(columns={stat: str(file[:8])}, inplace=True)
         join_df = merged
 
     # sort columns: first is SPIELER, then sort according to date
-    #join_df = join_df.loc[:, ~join_df.duplicated()]
-
+    join_df = join_df.loc[:, ~join_df.columns.duplicated()]  # drop columns with the same name (e.g. 2 games on a day)
+    join_df = join_df.drop_duplicates()  # drop duplicate entries
     join_df = join_df.reindex(sorted(join_df.columns), axis=1)
     col = join_df.pop("TORHÜTER*IN")
     join_df.insert(0, col.name, col)
