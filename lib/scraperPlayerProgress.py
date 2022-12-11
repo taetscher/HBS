@@ -28,9 +28,9 @@ def scrapePlayerProgress():
     opts = webdriver.ChromeOptions()
     opts.add_argument('--no-sandbox')
     # for use on desktop:
-    #  driver = webdriver.Chrome(options=opts,
-    #                            executable_path=r"C:\Users\Benjamin Schüpbach\Desktop\Coding\chromedriver_win32\chromedriver.exe")
-    driver = webdriver.Chrome(options=opts)
+    driver = webdriver.Chrome(options=opts,
+                              executable_path=r"C:\Users\Benjamin Schüpbach\Desktop\Coding\chromedriver_win32\chromedriver.exe")
+    #driver = webdriver.Chrome(options=opts)
 
     # get team ids from options.py
     teams = []
@@ -508,6 +508,10 @@ def mergeStatsOutfield(games_list, player_list, stat, team_folder, season):
         join_df = merged
 
     # sort columns: first is SPIELER, then sort according to date
+    #TODO: find out why this fails
+    #join_df = join_df.loc[:, ~join_df.duplicated()].copy()
+
+    join_df = join_df.reindex(sorted(join_df.columns), axis=1)
     col = join_df.pop("KADER")
     join_df.insert(0, col.name, col)
     return join_df
@@ -541,6 +545,9 @@ def mergeStatsGoalie(games_list,player_list,stat,team_folder,season):
         join_df = merged
 
     # sort columns: first is SPIELER, then sort according to date
+    #join_df = join_df.loc[:, ~join_df.duplicated()]
+    
+    join_df = join_df.reindex(sorted(join_df.columns), axis=1)
     col = join_df.pop("TORHÜTER*IN")
     join_df.insert(0, col.name, col)
 
