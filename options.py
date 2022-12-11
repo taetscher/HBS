@@ -3,7 +3,7 @@
 # --------------------GENERAL OPTIONS-------------------------------------
 # Game Progressions
 scrapeGameProgressions = True
-plotGameProgressions = False
+plotGameProgressions = True
 
 # Player Progress
 scrapePlayerProgress = True
