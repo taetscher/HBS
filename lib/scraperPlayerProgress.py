@@ -593,7 +593,10 @@ def check_for_already_scraped_games(games, check_dir, gamenr_idx_from, gamenr_id
 
     for file in existing_data:
         game_nr = file[gamenr_idx_from:gamenr_idx_to]
-        existing_games.append(eval(game_nr))
+        if game_nr == 'rmance':
+            pass
+        else:
+            existing_games.append(eval(game_nr))
 
     remove = []
     for game in games:

@@ -4,7 +4,7 @@ import options
 import random
 import numpy as np
 
-data_dir = '../output_csv/gameProgressions'
+data_dir = '././output_csv/gameProgressions'
 
 #loading in the options file
 teams_seasons = options.teams_seasons
@@ -34,7 +34,7 @@ def plotGameProgressions():
             whole_season['Median Performance (Whole Season)'] = whole_season.median(axis=1)
             whole_season['time'] = np.arange(1,len(whole_season)+1)
 
-            whole_season.to_csv(f'../output_csv/gameProgressions/{team_folder}/{season}/median_performance.csv', index=False)
+            whole_season.to_csv(f'././output_csv/gameProgressions/{team_folder}/{season}/median_performance.csv', index=False)
 
 
 def convert_stats(data_dir, team_folder, season, game):
