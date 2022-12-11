@@ -5,6 +5,7 @@
 scrapeGameProgressions = True
 plotGameProgressions = True  # does not actually plot anything anymore, it calculates median performance
 
+
 # Player Progress
 scrapePlayerProgress = True
 plotPlayerProgress = False
