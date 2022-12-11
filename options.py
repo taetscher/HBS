@@ -3,7 +3,7 @@
 # --------------------GENERAL OPTIONS-------------------------------------
 # Game Progressions
 scrapeGameProgressions = True
-plotGameProgressions = False
+plotGameProgressions = True  # does not actually plot anything anymore, it calculates median performance
 
 # Player Progress
 scrapePlayerProgress = True

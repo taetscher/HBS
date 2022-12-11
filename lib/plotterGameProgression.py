@@ -17,7 +17,7 @@ def plotGameProgressions():
         seasons = os.listdir(f'{data_dir}/{team_folder}')
 
         for season in seasons:
-            print(f'\n\nPlotting game progressions for team {team_folder}, season {season}')
+            print(f'\n\nCalculating median performance for team {team_folder}, season {season}')
             games = os.listdir(f'{data_dir}/{team_folder}/{season}')
 
             whole_season = pd.DataFrame()
@@ -35,8 +35,6 @@ def plotGameProgressions():
             whole_season['time'] = np.arange(1,len(whole_season)+1)
 
             whole_season.to_csv(f'../output_csv/gameProgressions/{team_folder}/{season}/median_performance.csv', index=False)
-
-            print(whole_season.head(10))
 
 
 def convert_stats(data_dir, team_folder, season, game):
