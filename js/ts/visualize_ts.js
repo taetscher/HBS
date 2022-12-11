@@ -302,15 +302,12 @@ export async function visualizeTS_allGames(in_array){
                 });
             
             
-            
             // define the area
             var area = d3.area()
                 .x(function(d) { return x(d.timestamp); })
                 .y0(y(0))
                 .y1(function(d) { return y(d.score); });   
-            
-            // export the formatted data
-            data_for_all_games["game_"+q] = area;
+
 
             //ONLY ON THE FIRST ONE, ADD AXES, TITLE ETC.
             if (q == 0){
@@ -521,38 +518,49 @@ export async function visualizeTS_allGames(in_array){
                 }
             })
             myDiv.appendChild(sh_b)
-            
-            // also add a mean/median line to indicate trends at different stages
-            // of a game
-            
-            // data manipulation
-            console.log(data_for_all_games);
-            
-            var average = {};
-            
-            average.push({
-                name: "mean",
-                values: data_for_all_games["game_0"].map(function(d) {
-                    return {date: d.timestamp, score: d3.mean(color.domain().map(function(e) { return +d[e]; } ))};
-                })
-            });
-
-            // define the line
-            var av_line = d3.line()
-                .x(function(d) { return x(d.x_axis); })
-                .y(function(d) { return y(d.y_axis); })
-                .curve(d3.curveBasis);
-            
-            // add the area
-            svg.append("path")
-                .data([average])
-                .attr("class", "AverageLine")
-                .attr("stroke", "white")
-                .attr('stroke-width', '5px')
-                .attr('fill-opacity', 0)
-                .attr('id', 'average')
-                .attr("d", av_line)
 
         }
     }  
+    
+    // also add a mean/median line to indicate trends at different stages
+    // of a game
+
+    var ts_baseurl_m = "https://raw.githubusercontent.com/taetscher/HBS/master/output_csv/gameProgressions/";
+    var team_m = document.getElementById('dropdown_teams').innerHTML;
+    var season_m = document.getElementById('dropdown_seasons').innerHTML;
+    var stat_m = 'median_performance.csv';
+    var dataURL_m = ts_baseurl_m+team_m+"/"+season_m+"/"+stat_m;
+    var dataURL_median = encodeURI(dataURL_m);
+    console.log(dataURL_median)
+
+    //load the data
+    await loadCSV(dataURL_median).then(function (data){
+        // define the line
+        var av_line = d3.line()
+            .x(function(d) { return x(d.time); })
+            .y(function(d) { return y(d["Median Performance (Whole Season)"]); })
+            .curve(d3.curveBasis);
+
+        // add the area behind the line
+        svg.append("path")
+            .data([data])
+            .attr("class", "AverageLine")
+            .attr("stroke", "yellow")
+            .attr('stroke-width', '35px')
+            .attr('stroke-opacity', 0.1)
+            .attr('fill-opacity', 0)
+            .attr('id', 'average')
+            .attr("d", av_line)
+        
+        // add the line
+        svg.append("path")
+            .data([data])
+            .attr("class", "AverageLine")
+            .attr("stroke", "white")
+            .attr('stroke-width', '5px')
+            .attr('fill-opacity', 0)
+            .attr('id', 'average')
+            .style("stroke-dasharray", ("3, 3"))
+            .attr("d", av_line)
+    });
 }

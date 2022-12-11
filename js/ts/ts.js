@@ -76,6 +76,7 @@ function draw(){
             var game = values[x].innerHTML
             if (game === 'All Games Combined'){}
             else if (game == undefined){}
+            else if (game == 'median_performance.csv'){}
             else to_draw.push(game)
         }
 
