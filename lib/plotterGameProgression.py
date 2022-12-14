@@ -22,10 +22,11 @@ def plotGameProgressions():
 
             whole_season = pd.DataFrame()
             for game in reversed(games):
-                print(game)
+                
                 if game == 'median_performance.csv':
                     pass
                 else:
+                    print(game)
                     df, home, away, date = convert_stats(data_dir, team_folder, season, game)
                     df['time'] = df['time'].round()
                     grouped = df.groupby('time', as_index=False)['Moving Average'].mean()
@@ -43,7 +44,7 @@ def convert_stats(data_dir, team_folder, season, game):
     time = []
     score = []
     cols = []
-    with open(f'{data_dir}/{team_folder}/{season}/{game}', 'r') as infile:
+    with open(fr'{data_dir}/{team_folder}/{season}/{game}', 'r') as infile:
         lines = infile.readlines()
         n = 0
         for line in lines:
@@ -62,6 +63,7 @@ def convert_stats(data_dir, team_folder, season, game):
 
         df = pd.DataFrame(data, columns=cols)
 
+
         # check which team was home or away, adjust goal diff accordingly
         homeAway = 1000
         ha = game[9:].split('_')
@@ -73,7 +75,7 @@ def convert_stats(data_dir, team_folder, season, game):
             homeAway = 0
         else:
             homeAway = 1
-
+        
         # calculate new columns
         df['GDoT'] = df['score'].apply(lambda x: convert_score(x, homeAway))
         df['time'] = df['timestamp'].apply(lambda t: convert_time(t))

@@ -31,7 +31,7 @@ def handballStats():
 
     if options.plotPlayerProgress:
         print("\n", "-" * 30, "\n", "Plotting Player Progress", "\n", "-" * 30, "\n")
-        #plotPlayerProgress()
+        plotPlayerProgress()
 
     if options.scrapeGameProgressions:
         try:

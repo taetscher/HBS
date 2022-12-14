@@ -2,12 +2,12 @@
 
 # --------------------GENERAL OPTIONS-------------------------------------
 # Game Progressions
-scrapeGameProgressions = False
+scrapeGameProgressions = True
 plotGameProgressions = True  # does not actually plot anything anymore, it calculates median performance
 
 
 # Player Progress
-scrapePlayerProgress = False
+scrapePlayerProgress = True
 plotPlayerProgress = False
 
 # Player Stats (not fully implemented yet)
