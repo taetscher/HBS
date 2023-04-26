@@ -144,21 +144,24 @@ def cleanupGameProgressions():
             
             for game in games:
                 
-                #check if game is played in the future, if so delete file
-                game_d = game[:8].split('_')
-                game_d[0] = '20'+game_d[0]
-                game_d.reverse()
-                game_date = '.'.join(game_d)
-                current_date = datetime.now().strftime('%d.%m.%Y')
-                
-                t_format = '%d.%m.%Y'
-                
-                game_played = datetime.strptime(game_date, t_format)
-                today = datetime.strptime(current_date, t_format)
-                
-                #if the game in question is played in the future, delete the csv
-                if game_played > today or game.split('_')[4].isspace():
-                    os.remove(f'{g_path}/'+game)
+                if game == 'median_performance.csv':
+                    pass
+                else:
+                    #check if game is played in the future, if so delete file
+                    game_d = game[:8].split('_')
+                    game_d[0] = '20'+game_d[0]
+                    game_d.reverse()
+                    game_date = '.'.join(game_d)
+                    current_date = datetime.now().strftime('%d.%m.%Y')
+                    
+                    t_format = '%d.%m.%Y'
+                    
+                    game_played = datetime.strptime(game_date, t_format)
+                    today = datetime.strptime(current_date, t_format)
+                    
+                    #if the game in question is played in the future, delete the csv
+                    if game_played > today or game.split('_')[4].isspace():
+                        os.remove(f'{g_path}/'+game)
 
 
 def emailAlert(message):
